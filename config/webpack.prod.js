@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");// js压缩多线程插件
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 const threads = os.cpus().length;
 
@@ -29,7 +30,8 @@ const getStyleloader = (pre) => {
 module.exports = {
     entry: {
         main: './src/main.js',
-        action: './src/js/action.js'
+        action: './src/js/action.js',
+        app: './src/app.js'
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
@@ -40,6 +42,10 @@ module.exports = {
         rules: [
             {
                 oneOf: [
+                    {
+                        test: /\.html$/,
+                        loader:"html-loader" 
+                    },
                     {
                         // 用来匹配 .css 结尾的文件
                         test: /\.css$/,
@@ -97,6 +103,7 @@ module.exports = {
                                 options: {
                                     cacheDirectory: true, // 开启babel编译缓存
                                     cacheCompression: false, // 缓存文件不要压缩
+                                    plugins: ["@babel/plugin-transform-runtime"], // 减少代码体积
                                 }
                             }
                         ]
@@ -122,6 +129,16 @@ module.exports = {
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/index.html"),
+            title:'首页',
+            filename: "src/index.html",
+            chunks:['main','action']
+        }),
+        new HtmlWebpackPlugin({
+            // 以 public/index.html 为模板创建文件
+            // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
+            template: path.resolve(__dirname, "../public/list.html"),
+            filename: "src/list.html",
+            chunks:['main','app']
         }),
         // 提取css成单独文件
         new MiniCssExtractPlugin({
@@ -136,6 +153,34 @@ module.exports = {
             new CssMinimizerPlugin(),
             new TerserPlugin({
                 parallel: threads // 开启多进程
+            }),
+            // 压缩图片
+            new ImageMinimizerPlugin({
+                minimizer: {
+                    implementation: ImageMinimizerPlugin.imageminGenerate,
+                    options: {
+                        plugins: [
+                            ["gifsicle", { interlaced: true }],
+                            ["jpegtran", { progressive: true }],
+                            ["optipng", { optimizationLevel: 5 }],
+                            [
+                                "svgo",
+                                {
+                                    plugins: [
+                                        "preset-default",
+                                        "prefixIds",
+                                        {
+                                            name: "sortAttrs",
+                                            params: {
+                                                xmlnsOrder: "alphabetical",
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        ],
+                    },
+                },
             }),
         ]
     },
