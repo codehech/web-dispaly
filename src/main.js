@@ -2,6 +2,7 @@ import sum from './js/sum'
 import "./css/index.css"
 import "./css/index.less"
 import eChartsFn from './js/action'
+import wximg from './images/wx.jpg'
 
 
 console.log(sum(1,2,3,4,5,6))
