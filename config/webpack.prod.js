@@ -42,10 +42,10 @@ module.exports = {
         rules: [
             {
                 oneOf: [
-                    {
-                        test: /\.html$/,
-                        loader:"html-loader" 
-                    },
+                    // {
+                    //     test: /\.html$/,
+                    //     loader:"html-loader" 
+                    // },
                     {
                         // 用来匹配 .css 结尾的文件
                         test: /\.css$/,
@@ -128,16 +128,23 @@ module.exports = {
         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
+            template: path.resolve(__dirname, "../public/main.html"),
+            filename: "index.html"
+        }),
+        new HtmlWebpackPlugin({
+            // 以 public/index.html 为模板创建文件
+            // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/index.html"),
             title:'首页',
-            filename: "src/index.html",
-            chunks:['main','action']
+            filename: "pages/index.html",
+            chunks:['main']
         }),
         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/list.html"),
-            filename: "src/list.html",
+            title:'列表',
+            filename: "pages/list.html",
             chunks:['main','app']
         }),
         // 提取css成单独文件
