@@ -10,179 +10,115 @@
     src: url('@{ali-font-path}/AlibabaPuHuiTi-2-105-Heavy.ttf');
 }
 
-
 @pagewidth: 100vw;
 @pageheight: 100vh;
 @blue: #7FCCFF;
 @yellow-d: #E8940B;
 @green-l: #3A9512;
+@backgroundS: 100% 100%;
 
-html {
-    * {
+body{
+    padding: 0;
+    margin: 0;
+    background-color: rgba(10, 28, 55, 1);
+    *{
         padding: 0;
         margin: 0;
+        font-family: "雅黑", "微软雅黑", "Microsoft YaHei", 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     }
+}
+.text-center {
+    text-align: center;
+}
 
-    .text-center {
-        text-align: center;
-    }
-
-    .text-right {
-        text-align: right;
-    }
-
-    .container {
-        background-color: rgba(0, 0, 0, 1);
-        width: @pagewidth;
-        height: @pageheight;
-        overflow: hidden;
-
-        .title {
-            height: 6vh;
-            width: 100%;
-            line-height: 6vh;
-            background: url('../images/title2x.png') no-repeat center center;
-            background-size: contain;
-            color: @blue;
-            text-align: center;
-            font-size: 1.5vw;
-            overflow-wrap: break-word;
-        }
-
-        .content {
-            width: 100%;
-            height: 45%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 1vh;
-
-            * {
-                color: #fff;
-
-                ul {
-                    li {
-                        list-style: none;
-                    }
+.text-right {
+    text-align: right;
+}
+.box{
+    position: relative;
+    background: url('../css/imgs/title.png') no-repeat center top;
+    background-size: contain;
+    width: @pagewidth;
+    height: @pageheight;
+    overflow: hidden;
+    box-sizing: border-box;
+    .box-t{
+        width: 100%;
+        box-sizing: border-box;
+        padding-top: 4.5%;
+        display: flex;
+        justify-content: center;
+        div{
+            width: 33%;
+            height: 25vh;
+            &.l{
+                background: url('./imgs/l.png') no-repeat;
+                background-size: @backgroundS;
+                h3{
+                    color: #8EACE2;
+                    box-sizing: border-box;
+                    width: 100%;
+                    text-align: right;
+                    font-size: .6vw;
+                    padding-right: 2vw;
+                    padding-top: 2vh;
                 }
-            }
-
-            >div {
-                margin-bottom: 2vh;
-                padding: 2.5vh 2vh;
-                box-sizing: border-box;
-
-                .co_title {
-                    color: @blue;
-                    font-size: .8vw;
-                }
-
-                &.co_side {
-                    width: 29%;
-                    height: 100%;
-
-                    &.co-left {
-                        background: url('../images/left2x.png') no-repeat center;
-                        background-size: 100% 100%;
-
-                        .list-co {
-                            box-sizing: border-box;
-                            padding: 2rem;
-
-                            li {
-                                margin-bottom: 3.5vh;
-                                display: flex;
-                                justify-content: space-around;
-                                flex-wrap: wrap;
-
-                                div {
-                                    margin: 0;
-
-                                    &.left {
-                                        width: 15%;
-
-                                        p:first-child {
-                                            font-family: 'AlibabaPuHuiTi-2-115-Heavy';
-                                            font-size: 1vw;
-                                            color: @blue;
-                                        }
-
-                                        p {
-                                            line-height: 2vh;
-                                            font-size: .6vw;
-                                            font-weight: 100;
-                                            color: @blue;
-                                        }
-                                    }
-
-                                    &.right {
-                                        width: 75%;
-                                        margin-left: 5%;
-
-                                        p:first-child {
-                                            font-size: .8vw;
-                                            color: @blue;
-                                        }
-
-                                        p {
-                                            line-height: 2vh;
-                                            font-size: .6vw;
-                                            font-weight: 100;
-
-                                            span:first-child {
-                                                color: @yellow-d;
-                                            }
-
-                                            span {
-                                                color: @blue;
-                                                margin-right: 20px;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    &.co-right {
-                        background: url('../images/right2x.png') no-repeat center;
-                        background-size: 100% 100%;
-                    }
-                }
-
-                &.co_center {
-                    width: 40%;
-                    height: 100%;
-                    background: url('../images/center2x.png') no-repeat center;
-                    background-size: 100% 100%;
-                    padding-left: 3vh;
-                    >div {
-                        margin-top: 1vh;
-                        &._f{
-                            display: flex;
-                            justify-content: space-around;
-                            flex-wrap: wrap;
-                            div{
-                                width: 32%;
-                                height: 15vh;
-                                &.__f{
-                                    background: url('../images/g2x.png') no-repeat center;
-                                    background-size: 100% 100%;
-                                }
-                                &.__s{
-                                    background: url('../images/r2x.png') no-repeat center;
-                                    background-size: 100% 100%;
-                                }
-                                &.__t{
-                                    background: url('../images/y2x.png') no-repeat center;
-                                    background-size: 100% 100%;
-                                }
+                ul{
+                    box-sizing: border-box;
+                    padding: 5rem 8rem;
+                    width: 100%;
+                    &.t_j_list{
+                        li{
+                            display: inline-block;
+                            list-style: none;
+                            width: 5.5vw;
+                            height: 4vh;
+                            overflow: hidden;
+                            background: url('./imgs/15022.png') no-repeat left center;
+                            background-size: contain;
+                            span{
+                                color: #fff;
+                                font-size: .5vw;
                             }
                         }
                     }
                 }
             }
+            &.c{
+                background: url('./imgs/c.png') no-repeat;
+                background-size: @backgroundS;
+            }
+            &.r{
+                background: url('./imgs/r.png') no-repeat;
+                background-size: @backgroundS;
+                margin-right: 1.2%;
+            }
         }
-
+    }
+    .box-s{
+        width: 100%;
+        margin-top: .6%;
+        display: flex;
+        justify-content: space-between;
+        div{
+            height: 65vh;
+            &.box-h-l{
+                background: url('./imgs/area.png') no-repeat;
+                background-size: @backgroundS;
+                width: 20%;
+            }
+            &.box-h-c{
+                background: url('./imgs/alarm.png') no-repeat;
+                background-size: @backgroundS;
+                width: 58%;
+                margin-left: .7%;
+            }
+            &.box-h-r{
+                background: url('./imgs/ms.png') no-repeat;
+                background-size: @backgroundS;
+                width: 20%;
+                margin-right: 1.2%;
+            }
+        }
     }
 }

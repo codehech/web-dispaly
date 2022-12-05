@@ -1,5 +1,4 @@
 import math from './js/math'
-import "./css/index.css"
 import "./css/index.less"
 // import eChartsFn from './js/action'
 

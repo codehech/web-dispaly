@@ -31,7 +31,8 @@ module.exports = {
     entry: {
         main: './src/main.js',
         action: './src/js/action.js',
-        app: './src/app.js'
+        app: './src/app.js',
+        math: './src/js/math.js',
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
@@ -135,7 +136,7 @@ module.exports = {
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/index.html"),
-            title:'首页',
+            title:'民声民意舆情分析预警平台',
             filename: "pages/index.html",
             chunks:['main']
         }),
@@ -145,7 +146,7 @@ module.exports = {
             template: path.resolve(__dirname, "../public/list.html"),
             title:'列表',
             filename: "pages/list.html",
-            chunks:['main','app']
+            chunks:['main','math']
         }),
         // 提取css成单独文件
         new MiniCssExtractPlugin({
