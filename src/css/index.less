@@ -48,7 +48,7 @@ body{
         padding-top: 4.5%;
         display: flex;
         justify-content: center;
-        div{
+        >div{
             width: 33%;
             height: 25vh;
             &.l{
@@ -65,7 +65,7 @@ body{
                 }
                 ul{
                     box-sizing: border-box;
-                    padding: 5rem 8rem;
+                    padding: 3vh 2.3vw;
                     width: 100%;
                     &.t_j_list{
                         li{
@@ -74,11 +74,60 @@ body{
                             width: 5.5vw;
                             height: 4vh;
                             overflow: hidden;
-                            background: url('./imgs/15022.png') no-repeat left center;
-                            background-size: contain;
+                            margin-top: 2.3vh;
+                            overflow: hidden;
+                            &.zixun{
+                                background: url('./imgs/media1.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.shejiao{
+                                background: url('./imgs/media2.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.luntan{
+                                background: url('./imgs/email.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.sousuo{
+                                background: url('./imgs/search.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.xinxiliu{
+                                background: url('./imgs/msg.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.tieba{
+                                background: url('./imgs/tieba.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.rexian{
+                                background: url('./imgs/15022.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.l_app{
+                                background: url('./imgs/2865.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.hanshan{
+                                background: url('./imgs/hanshan.png') no-repeat left center;
+                                background-size: contain;
+                            }
+                            &.xinfang{
+                                background: url('./imgs/xinfang.png') no-repeat left center;
+                                background-size: contain;
+                            }
                             span{
-                                color: #fff;
+                                color: #8EACE2;
+                                font-size: .9vw;
+                                display: block;
+                                width: 100%;
                                 font-size: .5vw;
+                                text-indent: 2.3vw;
+                                &.ti{
+                                    font-size: .8vw;
+                                    color: #fff;
+                                    font-weight: bold;
+                                }
                             }
                         }
                     }
@@ -100,24 +149,119 @@ body{
         margin-top: .6%;
         display: flex;
         justify-content: space-between;
-        div{
+        >div{
             height: 65vh;
             &.box-h-l{
                 background: url('./imgs/area.png') no-repeat;
                 background-size: @backgroundS;
                 width: 20%;
+                div{
+                    &.t-chart-f{
+                        height: 40vh;
+                        width: 100%;
+                    }
+                    &.t-chart-b{
+                        height: 23vh;
+                        width: 100%;
+                        background: url('./imgs//map.png') no-repeat center 5vh;
+                        background-size: 12vw;
+                    }
+                }
             }
             &.box-h-c{
                 background: url('./imgs/alarm.png') no-repeat;
                 background-size: @backgroundS;
                 width: 58%;
                 margin-left: .7%;
+                overflow: hidden;
+                .center_title{
+                    width: 100%;
+                    text-align: right;
+                    box-sizing: border-box;
+                    padding-right: 5%;
+                    line-height: 6vh;
+                    color: #8EACE2;
+                    font-size: .8vw;
+                }
+                .center_content{
+                    height: 58vh;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    padding: 1vh .1vw 0 0;
+                    a{
+                        margin-right: .6vw;
+                        div{
+                            height: 16vh;
+                            width: 18vw;
+                            &.hot{
+                                background:url('./imgs/alertred.png') no-repeat;
+                                background-size: @backgroundS;
+                            }
+                            &.middle{
+                                background:url('./imgs/alertyellow.png') no-repeat;
+                                background-size: @backgroundS;
+                            }
+                            &.low{
+                                background:url('./imgs/alertblue.png') no-repeat;
+                                background-size: @backgroundS;
+                            }
+                        }
+                    }
+                }
             }
             &.box-h-r{
                 background: url('./imgs/ms.png') no-repeat;
                 background-size: @backgroundS;
                 width: 20%;
                 margin-right: 1.2%;
+                box-sizing: border-box;
+                padding: 5.5vh 2vw;
+                overflow: hidden;
+                >div{
+                    width: 100%;
+                    height: 18vh;
+                    margin-left: .4vw;
+                    margin-bottom: 1vh;
+                    overflow: hidden;
+                    >span{
+                        display: inline-block;
+                        padding: 1.5vh .10vw;
+                        box-sizing: border-box;
+                        &.r-l{
+                            width: 30%;
+                            margin-left: 2.5vw;
+                            text-align: left;
+                            font-size: .7vw;
+                            color: #ffff;
+                        }
+                        &.r-r{
+                            text-align: right;
+                            width: 50%;
+                            font-size: .5vw;
+                            color:#8EACE2;
+                        }
+                    }
+                    &.r-li-f{
+                        background: url('./imgs/1@3x.png') no-repeat left top;
+                        background-size: 100% 100%;
+                    }
+                    &.r-li-s{
+                        background: url('./imgs/2@3x.png') no-repeat left top;
+                        background-size: 100% 100%;
+                    }
+                    &.r-li-t{
+                        background: url('./imgs/3@3x.png') no-repeat left top;
+                        background-size: 100% 100%;
+                    }
+                    .linbox{
+                        width: 100%;
+                        height: 15vh;
+                    }
+                }
             }
         }
     }

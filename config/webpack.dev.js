@@ -140,7 +140,7 @@ module.exports = {
             template: path.resolve(__dirname, "../public/list.html"),
             title: '列表',
             filename: "pages/list.html",
-            chunks: ['main', 'app']
+            chunks: ['main']
         }),
         // 提取css成单独文件
         new MiniCssExtractPlugin({

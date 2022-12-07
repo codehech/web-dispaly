@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
@@ -16,31 +19,111 @@
             <div class="l">
                 <h3>今日数据 2022.12.15</h3>
                 <ul class="t_j_list">
-                    <li class="">
-                        <span>353</span>
+                    <li class="zixun">
+                        <span class="ti">353</span>
                         <span>资讯媒体</span>
                     </li>
-                    <li class=""></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                    <li class=""></li>
-                    <li class=""></li>
+                    <li class="shejiao">
+                        <span class="ti">1450</span>
+                        <span>社交媒体</span>
+                    </li>
+                    <li class="luntan">
+                        <span class="ti">353</span>
+                        <span>论坛信箱</span>
+                    </li>
+                    <li class="sousuo">
+                        <span class="ti">6530</span>
+                        <span>搜索数据</span>
+                    </li>
+                    <li class="xinxiliu">
+                        <span class="ti">353</span>
+                        <span>信息流</span>
+                    </li>
+                    <li class="tieba">
+                        <span class="ti">353</span>
+                        <span>百度贴吧</span>
+                    </li>
+                    <li class="rexian">
+                        <span class="ti">15022</span>
+                        <span>12345·热线</span>
+                    </li>
+                    <li class="l_app">
+                        <span class="ti">15022</span>
+                        <span>12345·APP</span>
+                    </li>
+                    <li class="hanshan">
+                        <span class="ti">999</span>
+                        <span>寒山闻钟</span>
+                    </li>
+                    <li class="xinfang">
+                        <span class="ti">999</span>
+                        <span>信访平台</span>
+                    </li>
                 </ul>
             </div>
-            <div class="c"></div>
-            <div class="r"></div>
+            <div class="c" id="ss_chart">
+
+            </div>
+            <div class="r" id="r_chart">
+
+            </div>
         </div>
         <div class="box-s">
             <div class="box-h-l">
+                <div class="t-chart-f" id="t-chart-f">
 
+                </div>
+                <div class="t-chart-b">
+
+                </div>
             </div>
             <div class="box-h-c">
-
+                <div class="center_title">
+                    最新预警时间：2022.12.15 10
+                </div>
+                <div class="center_content">
+                    <a href="javascript:void(0)">
+                        <div class="hot"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="middle"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="middle"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="low"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="low"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="low"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="low"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="low"></div>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <div class="low"></div>
+                    </a>
+                </div>
             </div>
             <div class="box-h-r">
-
+                <div class="r-li-f">
+                    <span class="r-l">核酸点</span><span class="r-r">声量：69</span>
+                    <div class="linbox" id="hs"></div>
+                </div>
+                <div class="r-li-s">
+                    <span class="r-l">红码</span><span class="r-r">声量：45</span>
+                    <div class="linbox" id="hm"></div>
+                </div>
+                <div class="r-li-t">
+                    <span class="r-l">拖欠工资</span><span class="r-r">声量：40</span>
+                    <div class="linbox" id="tq"></div>
+                </div>
             </div>
         </div>
     </div>
