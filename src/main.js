@@ -3,10 +3,14 @@ import "./css/index.less"
 import eChartsFn from './js/action'
 
 $(function(){
- 
+  $('#box-alert').hide()
+ $('#close').off().on('click',function(){
+  $('#box-alert').hide()
+ })
 })
 eChartsFn([document.getElementById('ss_chart'),document.getElementById('r_chart'),
-document.getElementById('t-chart-f'),document.getElementById('hs'),document.getElementById('hm'),document.getElementById('tq')
+document.getElementById('t-chart-f'),document.getElementById('hs'),document.getElementById('hm'),document.getElementById('tq'),
+document.getElementById('linchar_a')
 ])
 //eChartsFn($('#ss_chart'))
 if (module.hot) {
@@ -14,3 +18,16 @@ if (module.hot) {
     //更新文件模块后执行操作
   })
 }
+
+function changeToPercent(num){
+  if(!/\d+\.?\d+/.test(num)){
+  alert("必须为数字");
+  }
+  let result = (num * 100).toString(),
+  index = result.indexOf(".");
+  if(index == -1 || result.substr(index+1).length <= 4){
+  return result + "%";
+  }
+  return result.substr(0, index + 5) + "%";
+  }
+ console.log(changeToPercent(200/400))

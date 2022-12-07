@@ -17,16 +17,26 @@
 @green-l: #3A9512;
 @backgroundS: 100% 100%;
 
-body{
+body {
     padding: 0;
     margin: 0;
     background-color: rgba(10, 28, 55, 1);
-    *{
+
+    * {
         padding: 0;
         margin: 0;
         font-family: "雅黑", "微软雅黑", "Microsoft YaHei", 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     }
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
 }
+
 .text-center {
     text-align: center;
 }
@@ -34,7 +44,8 @@ body{
 .text-right {
     text-align: right;
 }
-.box{
+
+.box {
     position: relative;
     background: url('../css/imgs/title.png') no-repeat center top;
     background-size: contain;
@@ -42,19 +53,233 @@ body{
     height: @pageheight;
     overflow: hidden;
     box-sizing: border-box;
-    .box-t{
+
+    .box-alert {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .8);
+        z-index: 9990;
+
+        >div {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            >a {
+                position: absolute;
+                display: block;
+                right: 9%;
+                top: 4.5%;
+                z-index: 9999;
+                width: 3.6vw;
+                height: 5.5vh;
+                background: url('./imgs/close.png') no-repeat center;
+                background-size: 100%;
+            }
+
+            >div {
+                width: 85%;
+                height: 90%;
+                position: absolute;
+                margin: 0 auto;
+                left: -8%;
+                right: 0;
+                top: 5%;
+
+                &.al_hot {
+                    background: url('./imgs/linkred.png') no-repeat center;
+                    background-size: @backgroundS;
+
+                    h5 {
+                        span {
+                            color: #FF3300;
+                        }
+                    }
+                }
+
+                &.al_middle {
+                    background: url('./imgs/linkyellow.png') no-repeat center;
+                    background-size: @backgroundS;
+
+                    h5 {
+                        span {
+                            color: #FFAC00;
+                        }
+                    }
+                }
+
+                &.al_normal {
+                    background: url('./imgs/linkblue.png') no-repeat center;
+                    background-size: @backgroundS;
+
+                    h5 {
+                        span {
+                            color: #41D3FF;
+                        }
+                    }
+                }
+
+                >h5 {
+                    color: #fff;
+                    font-size: .8vw;
+                    padding-top: 6.1vh;
+                    padding-left: 9.5vw;
+                    font-weight: normal;
+                    span {
+                        font-size: .6vw;
+                        padding-left: 10vw;
+                    }
+
+                    p {
+                        display: inline;
+                        color: #8EACE2;
+                        font-size: .6vw;
+                        padding-left: 36vw;
+
+                        &._ll {
+                            padding-left: 5vw;
+                        }
+                    }
+                }
+
+                >h4 {
+                    color: #fff;
+                    font-size: .8vw;
+                    padding-top: 3vh;
+                    padding-left: 9.5vw;
+                }
+
+                >h6 {
+                    color: #8EACE2;
+                    font-size: .6vw;
+                    padding-top: 1vh;
+                    padding-left: 9.5vw;
+                }
+
+                >div {
+                    width: 98%;
+                    height: auto;
+                    margin: 0 auto;
+                    padding-left: 8.2%;
+                    padding-top: 3.5vh;
+                    display: flex;
+                    box-sizing: border-box;
+
+                    >div {
+                        flex: 0 0 0 auto;
+                        width: 50%;
+                        height: 65vh;
+                        overflow-y: scroll;
+
+                        &::-webkit-scrollbar {
+                            width: 0 !important
+                        }
+
+                        &._al_left {
+                            >h5 {
+                                color: #5DDEFC;
+                                padding: 0 2vw;
+                                font-size: .6vw;
+                            }
+                            >div{
+                                &.linchar_a{
+                                    
+                                    height: 45vh;
+                                    width: 100%;
+                                }
+                            }
+                        }
+
+                        &._al_right {
+                            em {
+                                width: .8rem;
+                                display: block;
+                                height: .8rem;
+                                border: 3px solid #39D1FF;
+
+                                border-radius: 5rem;
+                                margin-left: -0.93vw;
+                                margin-top: -.5vh;
+
+                                &._s {
+                                    background-color: #39D1FF;
+                                }
+                            }
+
+                            h5 {
+                                color: #5DDEFC;
+                                padding: 0 5vw;
+                                font-size: .6vw;
+                            }
+
+                            >div {
+                                width: 100%;
+                                margin-top: 4vh;
+
+                                >a {
+                                    width: 100%;
+                                    display: block;
+                                    display: flex;
+
+                                    >div {
+                                        flex: 0 0 0 auto;
+
+                                        &._al_r_co_l {
+                                            width: 20%;
+                                            color: #8EACE2;
+                                            font-size: .6vw;
+                                            text-align: right;
+                                            padding-right: 2%;
+                                            line-height: 2vh;
+                                            margin-top: -1.2vh;
+                                        }
+
+                                        &._al_r_co_r {
+                                            width: 90%;
+                                            padding-left: 2%;
+                                            border-left: 1px solid #0079D2;
+                                            padding-bottom: 4vh;
+
+                                            h6 {
+                                                color: #fff;
+                                                margin-top: -1vh;
+                                                font-size: .6vw;
+                                                font-weight: normal;
+                                            }
+
+                                            p {
+                                                padding: .5vh 0;
+                                                color: #8EACE2;
+                                                font-size: .5vw;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .box-t {
         width: 100%;
         box-sizing: border-box;
         padding-top: 4.5%;
         display: flex;
         justify-content: center;
-        >div{
+
+        >div {
             width: 33%;
             height: 25vh;
-            &.l{
+
+            &.l {
                 background: url('./imgs/l.png') no-repeat;
                 background-size: @backgroundS;
-                h3{
+
+                h3 {
                     color: #8EACE2;
                     box-sizing: border-box;
                     width: 100%;
@@ -63,12 +288,14 @@ body{
                     padding-right: 2vw;
                     padding-top: 2vh;
                 }
-                ul{
+
+                ul {
                     box-sizing: border-box;
                     padding: 3vh 2.3vw;
                     width: 100%;
-                    &.t_j_list{
-                        li{
+
+                    &.t_j_list {
+                        li {
                             display: inline-block;
                             list-style: none;
                             width: 5.5vw;
@@ -76,54 +303,66 @@ body{
                             overflow: hidden;
                             margin-top: 2.3vh;
                             overflow: hidden;
-                            &.zixun{
+
+                            &.zixun {
                                 background: url('./imgs/media1.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.shejiao{
+
+                            &.shejiao {
                                 background: url('./imgs/media2.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.luntan{
+
+                            &.luntan {
                                 background: url('./imgs/email.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.sousuo{
+
+                            &.sousuo {
                                 background: url('./imgs/search.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.xinxiliu{
+
+                            &.xinxiliu {
                                 background: url('./imgs/msg.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.tieba{
+
+                            &.tieba {
                                 background: url('./imgs/tieba.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.rexian{
+
+                            &.rexian {
                                 background: url('./imgs/15022.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.l_app{
+
+                            &.l_app {
                                 background: url('./imgs/2865.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.hanshan{
+
+                            &.hanshan {
                                 background: url('./imgs/hanshan.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            &.xinfang{
+
+                            &.xinfang {
                                 background: url('./imgs/xinfang.png') no-repeat left center;
                                 background-size: contain;
                             }
-                            span{
+
+                            span {
                                 color: #8EACE2;
                                 font-size: .9vw;
                                 display: block;
                                 width: 100%;
                                 font-size: .5vw;
                                 text-indent: 2.3vw;
-                                &.ti{
+
+                                &.ti {
                                     font-size: .8vw;
                                     color: #fff;
                                     font-weight: bold;
@@ -133,57 +372,115 @@ body{
                     }
                 }
             }
-            &.c{
+
+            &.c {
                 background: url('./imgs/c.png') no-repeat;
                 background-size: @backgroundS;
             }
-            &.r{
+
+            &.r {
                 background: url('./imgs/r.png') no-repeat;
                 background-size: @backgroundS;
                 margin-right: 1.2%;
             }
         }
     }
-    .box-s{
+
+    .box-s {
         width: 100%;
         margin-top: .6%;
         display: flex;
         justify-content: space-between;
-        >div{
+
+        >div {
             height: 65vh;
-            &.box-h-l{
+
+            &.box-h-l {
                 background: url('./imgs/area.png') no-repeat;
                 background-size: @backgroundS;
                 width: 20%;
-                div{
-                    &.t-chart-f{
+
+                >div {
+                    &.t-chart-f {
                         height: 40vh;
                         width: 100%;
                     }
-                    &.t-chart-b{
+
+                    &.t-chart-b {
                         height: 23vh;
                         width: 100%;
-                        background: url('./imgs//map.png') no-repeat center 5vh;
+                        background: url('./imgs/map.png') no-repeat center 5vh;
                         background-size: 12vw;
+                        position: relative;
+                        >div {
+                            position: absolute;
+                            background-color: #0079D2;
+                            margin: 0 auto;
+                            &#wz {
+                                left: 36%;
+                                top: 30%;
+                                z-index: 9999;
+                            }
+                            &.l1 {
+                                >div {
+                                    position: relative;
+                                    width: auto;
+                                    overflow: hidden;
+                                    height: 10vh;
+
+                                    >div {
+                                        &.flag {
+                                            position: absolute;
+                                            top: 3vh;
+                                            left: .5vw;
+                                            width: 3vw;
+
+                                            p {
+                                                color: #fff;
+                                                font-size: .6vw;
+
+                                                &.text_1 {
+                                                    color: #1DDE7D;
+                                                }
+                                            }
+                                        }
+                                        &.flex-col {
+                                            width: .2vw;
+                                            position: absolute;
+                                            bottom:0;
+                                            height: 100%;
+                                            background: linear-gradient(#1CDE7D, #0D274F);
+                                            background: -webkit-linear-gradient(#1CDE7D, #0D274F);
+                                            background: -o-linear-gradient(#1CDE7D, #0D274F);
+                                            background: -moz-linear-gradient(#1CDE7D, #0D274F);
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
                     }
                 }
             }
-            &.box-h-c{
+
+            &.box-h-c {
                 background: url('./imgs/alarm.png') no-repeat;
                 background-size: @backgroundS;
                 width: 58%;
                 margin-left: .7%;
                 overflow: hidden;
-                .center_title{
+
+                .center_title {
                     width: 100%;
                     text-align: right;
                     box-sizing: border-box;
                     padding-right: 5%;
                     line-height: 6vh;
                     color: #8EACE2;
-                    font-size: .8vw;
+                    font-size: .6vw;
                 }
-                .center_content{
+
+                .center_content {
                     height: 58vh;
                     width: 100%;
                     display: flex;
@@ -192,28 +489,110 @@ body{
                     box-sizing: border-box;
                     overflow: hidden;
                     padding: 1vh .1vw 0 0;
-                    a{
+
+                    a {
                         margin-right: .6vw;
-                        div{
-                            height: 16vh;
+
+                        div {
+                            height: 17vh;
                             width: 18vw;
-                            &.hot{
-                                background:url('./imgs/alertred.png') no-repeat;
-                                background-size: @backgroundS;
+
+                            >dl {
+                                dt {
+                                    width: 100%;
+                                    padding: 1.7vh 0 1.5vh 1.2vw;
+                                    box-sizing: border-box;
+                                    overflow: hidden;
+
+                                    span {
+                                        display: inline-block;
+                                        font-size: .7vw;
+                                        color: #fff;
+                                        width: 40%;
+
+                                        &.s_r_fx {
+                                            box-sizing: border-box;
+                                            padding-right: 5%;
+                                            width: 60%;
+                                            color: #41D3FF;
+                                            font-size: .6vw;
+                                            text-align: right;
+                                        }
+                                    }
+                                }
+
+                                dd {
+                                    h4 {
+                                        color: #fff;
+                                        font-size: .8vw;
+                                        width: 100%;
+                                        box-sizing: border-box;
+                                        padding: .2vh 1.2vw;
+                                    }
+
+                                    ol {
+                                        height: 10vh;
+                                        overflow: hidden;
+                                        display: inline-block;
+                                        width: 50%;
+                                        float: left;
+                                        box-sizing: border-box;
+                                        padding: 1vh 0 0 1vw;
+
+                                        li {
+                                            font-size: .7vw;
+                                            color: #8EACE2;
+                                            text-indent: 2.8rem;
+                                            line-height: 2.8vh;
+                                            height: 2.8vh;
+                                            background: url('./imgs/li.png') no-repeat -15% center;
+                                            background-size: 35%;
+
+                                            &:hover {
+                                                background: url('./imgs/lick.png') no-repeat -15% center;
+                                                background-size: 35%;
+                                            }
+                                        }
+                                    }
+
+                                    ::after {
+                                        clear: both;
+                                    }
+                                }
                             }
-                            &.middle{
-                                background:url('./imgs/alertyellow.png') no-repeat;
+
+                            &.hot {
+                                background: url('./imgs/alertred.png') no-repeat;
                                 background-size: @backgroundS;
+
+                                span {
+                                    &.s_r_fx {
+                                        color: #FF3300;
+                                    }
+                                }
                             }
-                            &.low{
-                                background:url('./imgs/alertblue.png') no-repeat;
+
+                            &.middle {
+                                background: url('./imgs/alertyellow.png') no-repeat;
+                                background-size: @backgroundS;
+
+                                span {
+                                    &.s_r_fx {
+                                        color: #FFAC00;
+                                    }
+                                }
+                            }
+
+                            &.low {
+                                background: url('./imgs/alertblue.png') no-repeat;
                                 background-size: @backgroundS;
                             }
                         }
                     }
                 }
             }
-            &.box-h-r{
+
+            &.box-h-r {
                 background: url('./imgs/ms.png') no-repeat;
                 background-size: @backgroundS;
                 width: 20%;
@@ -221,43 +600,51 @@ body{
                 box-sizing: border-box;
                 padding: 5.5vh 2vw;
                 overflow: hidden;
-                >div{
+
+                >div {
                     width: 100%;
                     height: 18vh;
                     margin-left: .4vw;
                     margin-bottom: 1vh;
                     overflow: hidden;
-                    >span{
+
+                    >span {
                         display: inline-block;
                         padding: 1.5vh .10vw;
                         box-sizing: border-box;
-                        &.r-l{
+
+                        &.r-l {
                             width: 30%;
                             margin-left: 2.5vw;
                             text-align: left;
                             font-size: .7vw;
                             color: #ffff;
                         }
-                        &.r-r{
+
+                        &.r-r {
                             text-align: right;
                             width: 50%;
                             font-size: .5vw;
-                            color:#8EACE2;
+                            color: #8EACE2;
                         }
                     }
-                    &.r-li-f{
+
+                    &.r-li-f {
                         background: url('./imgs/1@3x.png') no-repeat left top;
                         background-size: 100% 100%;
                     }
-                    &.r-li-s{
+
+                    &.r-li-s {
                         background: url('./imgs/2@3x.png') no-repeat left top;
                         background-size: 100% 100%;
                     }
-                    &.r-li-t{
+
+                    &.r-li-t {
                         background: url('./imgs/3@3x.png') no-repeat left top;
                         background-size: 100% 100%;
                     }
-                    .linbox{
+
+                    .linbox {
                         width: 100%;
                         height: 15vh;
                     }
