@@ -37,6 +37,15 @@ body {
     }
 }
 
+.m-top-5{
+    margin-top: 5vh;
+}
+.m-top-4{
+    margin-top: 4vh;
+}
+.m-top-3{
+    margin-top: 3vh;
+}
 .text-center {
     text-align: center;
 }
@@ -105,6 +114,14 @@ body {
                     h5 {
                         span {
                             color: #FFAC00;
+                        }
+                    }
+                    >div{
+                        &.l-c-list{
+                            overflow-y: scroll;
+                            &::-webkit-scrollbar {
+                                width: 0 !important
+                            }
                         }
                     }
                 }
@@ -181,12 +198,64 @@ body {
                                 color: #5DDEFC;
                                 padding: 0 2vw;
                                 font-size: .6vw;
+                                a{
+                                    padding: 0 .8vw 0 1.8vw;
+                                    font-weight: normal;
+                                    background: url('./imgs/li.png') no-repeat 0 center;
+                                    background-size: 35%;
+                                    opacity: .5;
+                                    color: #5DDEFC;
+                                    &.chcek,&:hover{
+                                        background: url('./imgs/lick.png') no-repeat 0 center;
+                                        background-size: 35%;
+                                        opacity: 1;
+                                        color: #5DDEFC;
+                                    }
+                                }
                             }
                             >div{
                                 &.linchar_a{
-                                    
-                                    height: 45vh;
+                                    height: 40vh;
                                     width: 100%;
+                                }
+                                &.n-list-chk{
+                                    width: 100%;
+                                    margin-top: 4vh;
+                                    >a{
+                                        width: 100%;
+                                        display: block;
+                                        display: flex;
+                                        margin-bottom: 4vh;
+                                        >div{
+                                            flex: 0 0 0 auto;
+                                            &.icon_nl{
+                                                width: 10%;
+                                                box-sizing: border-box;
+                                                padding-left: 5%;
+                                                img{
+                                                    width: 1.5vw;
+                                                }
+                                            }
+                                            &.content_nl{
+                                                width: 80%;
+                                                padding-left: 1%;
+                                                h6 {
+                                                    color: #fff;
+                                                    margin-top: -1vh;
+                                                    font-size: .6vw;
+                                                    font-weight: normal;
+                                                }
+                                                p {
+                                                    padding: .5vh 0;
+                                                    color: #8EACE2;
+                                                    font-size: .5vw;
+                                                    span{
+                                                        padding-right: 4vw;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -252,6 +321,9 @@ body {
                                                 padding: .5vh 0;
                                                 color: #8EACE2;
                                                 font-size: .5vw;
+                                                span{
+                                                    padding-right: 4vw;
+                                                }
                                             }
                                         }
                                     }
@@ -407,47 +479,80 @@ body {
                     }
 
                     &.t-chart-b {
-                        height: 23vh;
+                        height: 36%;
                         width: 100%;
                         background: url('./imgs/map.png') no-repeat center 5vh;
                         background-size: 12vw;
                         position: relative;
                         >div {
                             position: absolute;
-                            background-color: #0079D2;
                             margin: 0 auto;
+                            &#xc {
+                                left: 50%;
+                                top: 20%;
+                                z-index: 996;
+                            }
                             &#wz {
                                 left: 36%;
-                                top: 30%;
-                                z-index: 9999;
+                                top: 39%;
+                                z-index: 998;
+                            }
+                            &#cs {
+                                left: 58%;
+                                top: 14%;
+                            }
+                            &#zjg {
+                                left: 46%;
+                                top:-1%;
+                            }
+                            &#wj {
+                                left: 55%;
+                                top: 40%;
+                            }
+                            &#yq {
+                                left: 52%;
+                                top: 28%;
+                            }
+                            &#gs {
+                                left: 48%;
+                                top: 29%;
+                            }
+                            &#gx {
+                                left: 40%;
+                                top: 28%;
+                            }
+                            &#ks {
+                                left:62%;
+                                top: 25%;
+                            }
+                            &#tc {
+                                left: 70%;
+                                top: 16%;
                             }
                             &.l1 {
                                 >div {
                                     position: relative;
-                                    width: auto;
-                                    overflow: hidden;
-                                    height: 10vh;
-
+                                    width: 3vw;
+                                    height: 8vh;
                                     >div {
-                                        &.flag {
-                                            position: absolute;
-                                            top: 3vh;
-                                            left: .5vw;
+                                        position: absolute;
+                                        bottom:0;
+                                        .flag {
                                             width: 3vw;
-
+                                            float: left;
+                                            padding-left: 10%;
+                                            margin-top: -10%;
                                             p {
                                                 color: #fff;
                                                 font-size: .6vw;
-
                                                 &.text_1 {
                                                     color: #1DDE7D;
                                                 }
                                             }
                                         }
-                                        &.flex-col {
+                                        .flex-col {
                                             width: .2vw;
                                             position: absolute;
-                                            bottom:0;
                                             height: 100%;
                                             background: linear-gradient(#1CDE7D, #0D274F);
                                             background: -webkit-linear-gradient(#1CDE7D, #0D274F);

@@ -11,30 +11,58 @@
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
-
 </head>
-
 <body>
-    <div class="box" style="margin-top:-35%;">
-        <div class="box-alert" id="box-alert">
+    <header id="heder"></header>
+    <div class="box">
+        <div class="box-alert" id="box-alert" style="visibility:hidden">
             <div class="alert-content">
                 <a href="javascript:void(0)" id="close"></a>
-                <div class="al_middle"><!--al_middle,al_normal-->-->
-                    <h5>一事多诉 <span>预警级别：高</span> <p>指令推送状态：未处理</p> <p class="_ll">最新预警时间：2022.12.15 12</p></h5>
+                <div class="al_middle">
+                    <!--al_middle,al_normal-->-->
+                    <h5>一事多诉 <span>预警级别：高</span>
+                        <p>指令推送状态：未处理</p>
+                        <p class="_ll">最新预警时间：2022.12.15 12</p>
+                    </h5>
                     <h4>居民投诉6号线地铁站夜间施工吵的问题</h4>
                     <h6>涉事主体：XXXXXXXXXXXX</h6>
-                    <div>
+                    <div class="l-c-list">
                         <div class="_al_left">
                             <h5>民声趋势分析：</h5>
                             <div class="linchar_a" id="linchar_a">
 
                             </div>
+                            <h5 class="m-top-4">民声舆情明细：<a class="chcek" href="javascript:void(0)">民声诉求 （68）</a> <a
+                                    href="javascript:void(0)">网络舆情 （19）</a></h5>
+                            <div class="n-list-chk">
+                                <a href="javascript:void(0)">
+                                    <div class="icon_nl">
+                                        <img src="<%=require('../src/css/imgs/ico1.png')%>" alt="">
+                                    </div>
+                                    <div class="content_nl">
+                                        <h6>反映星明街6号线施工噪音无人处理</h6>
+                                        <p>夜间施工噪音很大，小区很多居民已经反映过了，仍然无人处理</p>
+                                        <p><span>时间：2022.12.10</span><span>来源：寒山闻钟</span><span>事件类型：城市管理</span></p>
+                                    </div>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <div class="icon_nl">
+                                        <img src="<%=require('../src/css/imgs/ico2.png')%>" alt="">
+                                    </div>
+                                    <div class="content_nl">
+                                        <h6>反映6号线地铁夜间使用噪音大问题</h6>
+                                        <p>来电反映6号线夜间施工噪音大的问题，地址6号线星明街旁</p>
+                                        <p><span>时间：2022.12.10</span><span>来源：18837489897</span><span>事件类型：城市管理</span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <div class="_al_right">
                             <h5>民声脉络：</h5>
-                            <div>
+                            <div id="news">
                                 <a href="javascript:void(0)">
-                                    <div class="_al_r_co_l">2022.12.15<br/>09:13</div>
+                                    <div class="_al_r_co_l">2022.12.15<br />09:13</div>
                                     <div class="_al_r_co_r">
                                         <em class="_s"></em>
                                         <h6>再次投诉地铁夜间施工</h6>
@@ -43,7 +71,7 @@
                                     </div>
                                 </a>
                                 <a href="javascript:void(0)">
-                                    <div class="_al_r_co_l">2022.12.15<br/>09:13</div>
+                                    <div class="_al_r_co_l">2022.12.15<br />09:13</div>
                                     <div class="_al_r_co_r">
                                         <em></em>
                                         <h6>再次投诉地铁夜间施工</h6>
@@ -52,7 +80,7 @@
                                     </div>
                                 </a>
                                 <a href="javascript:void(0)">
-                                    <div class="_al_r_co_l">2022.12.15<br/>09:13</div>
+                                    <div class="_al_r_co_l">2022.12.15<br />09:13</div>
                                     <div class="_al_r_co_r">
                                         <em></em>
                                         <h6>再次投诉地铁夜间施工</h6>
@@ -61,7 +89,7 @@
                                     </div>
                                 </a>
                                 <a href="javascript:void(0)">
-                                    <div class="_al_r_co_l">2022.12.15<br/>09:13</div>
+                                    <div class="_al_r_co_l">2022.12.15<br />09:13</div>
                                     <div class="_al_r_co_r">
                                         <em></em>
                                         <h6>再次投诉地铁夜间施工</h6>
@@ -70,7 +98,7 @@
                                     </div>
                                 </a>
                                 <a href="javascript:void(0)">
-                                    <div class="_al_r_co_l">2022.12.15<br/>09:13</div>
+                                    <div class="_al_r_co_l">2022.12.15<br />09:13</div>
                                     <div class="_al_r_co_r">
                                         <em></em>
                                         <h6>再次投诉地铁夜间施工</h6>
@@ -79,7 +107,7 @@
                                     </div>
                                 </a>
                                 <a href="javascript:void(0)">
-                                    <div class="_al_r_co_l">2022.12.15<br/>09:13</div>
+                                    <div class="_al_r_co_l">2022.12.15<br />09:13</div>
                                     <div class="_al_r_co_r">
                                         <em></em>
                                         <h6>再次投诉地铁夜间施工</h6>
@@ -88,7 +116,7 @@
                                     </div>
                                 </a>
                                 <a href="javascript:void(0)">
-                                    <div class="_al_r_co_l">2022.12.15<br/>09:13</div>
+                                    <div class="_al_r_co_l">2022.12.15<br />09:13</div>
                                     <div class="_al_r_co_r">
                                         <em></em>
                                         <h6>再次投诉地铁夜间施工</h6>
@@ -160,61 +188,125 @@
                 <div class="t-chart-f" id="t-chart-f">
 
                 </div>
-                <div class="t-chart-b">
-                    <!-- <div class="l1" id="xc">
+                <div class="t-chart-b" id="map">
+                    <div class="l1" id="xc" style="height:5vh;">
                         <div>
-                            <div class="flag">
-                                <p class="text">相城区</p>
-                                <p class="text_1">79</p>
+                            <div style="height: 70%;">
+                                <div class="flag">
+                                    <p class="text">相城区</p>
+                                    <p class="text_1">60</p>
+                                </div>
+                                <div class="flex-col"></div>
                             </div>
-                            <div class="flex-col" style="height:20%;"></div>
                         </div>
                     </div>
                     <div class="l1" id="cs">
-                        <div style="height: 5vh;">
-                            <div class="flag">
-                                <p class="text">常熟市</p>
-                                <p class="text_1">79</p>
-                            </div>
-                            <div class="flex-col"></div>
-                        </div>
-                    </div> -->
-                    <div class="l1" id="wz">
                         <div>
-                            <div class="flag">
-                                <p class="text">吴中区</p>
-                                <p class="text_1">79</p>
+                            <div style="height: 85%;">
+                                <div class="flag">
+                                    <p class="text">常熟市</p>
+                                    <p class="text_1">85</p>
+                                </div>
+                                <div class="flex-col"></div>
                             </div>
-                            <div class="flex-col" style="height: 2vh;"></div>
                         </div>
                     </div>
-
-                    <!-- <div class="l1" id="zjg">
+                    <div class="l1" id="wz">
                         <div>
-                            <div class="flag">
-                                <p class="text">张家港市</p>
-                                <p class="text_1">40</p>
+                            <div style="height: 100%;">
+                                <div class="flag">
+                                    <p class="text">吴中区</p>
+                                    <p class="text_1">79</p>
+                                </div>
+                                <div class="flex-col"></div>
                             </div>
-                            <div class="flex-col" style="height: 5vh;"></div>
+                        </div>
+                    </div>
+                    <div class="l1" id="zjg">
+                        <div>
+                            <div style="height: 40%;">
+                                <div class="flag" style="display: none;">
+                                    <p class="text">张家港市</p>
+                                    <p class="text_1">40</p>
+                                </div>
+                                <div class="flex-col"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="l1" id="wj">
                         <div>
-                            <div class="flag">
-                                <p class="text">吴江区</p>
-                                <p class="text_1">48</p>
+                            <div style="height: 60%;">
+                                <div class="flag" style="display: none;">
+                                    <p class="text">吴江区</p>
+                                    <p class="text_1">48</p>
+                                </div>
+                                <div class="flex-col"></div>
                             </div>
-                            <div class="flex-col" style="height: 5vh;"></div>
                         </div>
-                    </div> -->
+                    </div>
+                    <div class="l1" id="yq">
+                        <div>
+                            <div style="height: 40%;">
+                                <div class="flag" style="display: none;">
+                                    <p class="text">园区</p>
+                                    <p class="text_1">48</p>
+                                </div>
+                                <div class="flex-col"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l1" id="gs">
+                        <div>
+                            <div style="height: 35%;">
+                                <div class="flag" style="display: none;">
+                                    <p class="text">姑苏区</p>
+                                    <p class="text_1">48</p>
+                                </div>
+                                <div class="flex-col"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l1" id="gx">
+                        <div>
+                            <div style="height: 36%;">
+                                <div class="flag" style="display: none;">
+                                    <p class="text">高新区</p>
+                                    <p class="text_1">48</p>
+                                </div>
+                                <div class="flex-col"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l1" id="ks">
+                        <div>
+                            <div style="height: 36%;">
+                                <div class="flag" style="display: none;">
+                                    <p class="text">昆山</p>
+                                    <p class="text_1">48</p>
+                                </div>
+                                <div class="flex-col"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l1" id="tc">
+                        <div>
+                            <div style="height: 40%;">
+                                <div class="flag" style="display: none;">
+                                    <p class="text">太仓</p>
+                                    <p class="text_1">48</p>
+                                </div>
+                                <div class="flex-col"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="box-h-c">
                 <div class="center_title">
                     最新预警时间：2022.12.15 10
                 </div>
-                <div class="center_content">
-                    <a href="javascript:void(0)">
+                <div class="center_content" id="center_content">
+                    <a href="javascript:void(0)" data-title="一事多诉">
                         <div class="hot">
                             <dl>
                                 <dt><span>一事多诉</span><span class="s_r_fx">预警级别：高</span></dt>
@@ -232,10 +324,10 @@
                             </dl>
                         </div>
                     </a>
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" data-title="突发事件">
                         <div class="middle">
                             <dl>
-                                <dt><span>一事多诉</span><span class="s_r_fx">预警级别：高</span></dt>
+                                <dt><span>突发事件</span><span class="s_r_fx">预警级别：高</span></dt>
                                 <dd>
                                     <h4>居民投诉6号线地铁站夜间施工吵的问题</h4>
                                     <ol>

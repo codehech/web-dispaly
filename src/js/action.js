@@ -259,7 +259,7 @@ let eLineConfig_a = (...arr) =>{
       y:'bottom',     //可设定图例在上、下、居中
       padding:[1,0,0,0],   //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]
       itemGap: 200,
-      itemHeight: 10,
+      itemHeight: 20,
       textStyle: {
         "fontSize": fontSize(0.10),
         "padding": 20

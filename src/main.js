@@ -1,11 +1,20 @@
 import $ from 'jquery'
 import "./css/index.less"
 import eChartsFn from './js/action'
-
+let pageValue = {}
 $(function(){
-  $('#box-alert').hide()
+
+
+
+
+  
+  $('#center_content').off().on('click',function(){
+    let title = $(this).data('title');
+    pageValue.ti = title;
+    $('#box-alert').css('visibility','visible')
+  })
  $('#close').off().on('click',function(){
-  $('#box-alert').hide()
+  $('#box-alert').css('visibility','hidden')
  })
 })
 eChartsFn([document.getElementById('ss_chart'),document.getElementById('r_chart'),
@@ -31,3 +40,7 @@ function changeToPercent(num){
   return result.substr(0, index + 5) + "%";
   }
  console.log(changeToPercent(200/400))
+
+ export default function pageValueS(){
+  return pageValue
+ }
