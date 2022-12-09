@@ -9,37 +9,60 @@ const domain = /* document.domain || */ "//172.18.70.45:81"
 $(function () {
 
   // 补零函数
-function JoinZero(num) {
-	return num < 10 ? '0' + num : num;
-}
-// 获取时间
-function getTime(date) {
-	let time = (date == null ? new Date() : new Date(date));
-	let y = time.getFullYear();
-	let m = JoinZero(time.getMonth() + 1);
-	let d = JoinZero(time.getDate());
-let h = JoinZero(time.getHours());
-	let mi = JoinZero(time.getMinutes());
-	let s = JoinZero(time.getSeconds());
-	/* 	return `${y}-${m}-${d}-${h}-${mi}-${s}`; */
-	return {date:`${y}-${m}-${d}`,time:`${y}-${m}-${d}-${h}-${mi}-${s}`};
-}
-
-  const dataSourceObj ={
-    information:'zixun',
-    social:'shejiao',
-    bbs:'luntan',
-    search:'sousuo',
-    msg:'xinxiliu',
-    tieba:'tieba',
-    phone:'rexian',
-    app:'l_app',
-    hswz:'hanshan',
-    xinfang:'xinfang'
+  function JoinZero(num) {
+    return num < 10 ? '0' + num : num;
   }
+  // 获取时间
+  function getTime(date) {
+    let time = (date == null ? new Date() : new Date(date));
+    let y = time.getFullYear();
+    let m = JoinZero(time.getMonth() + 1);
+    let d = JoinZero(time.getDate());
+    let h = JoinZero(time.getHours());
+    let mi = JoinZero(time.getMinutes());
+    let s = JoinZero(time.getSeconds());
+    /* 	return `${y}-${m}-${d}-${h}-${mi}-${s}`; */
+    return { date: `${y}-${m}-${d}`, time: `${y}-${m}-${d}-${h}-${mi}-${s}` };
+  }
+
+  const dataSourceObj = {
+    information: 'zixun',
+    social: 'shejiao',
+    bbs: 'luntan',
+    search: 'sousuo',
+    msg: 'xinxiliu',
+    tieba: 'tieba',
+    phone: 'rexian',
+    app: 'l_app',
+    hswz: 'hanshan',
+    xinfang: 'xinfang'
+  }
+  const citySourceObj = [{
+    id: 1, name: '姑苏区', css: 'gs'
+  },
+  {
+    id: 2,name: '吴中区', css:'wz'
+  },{
+    id: 3,name: '太仓', css:'tc'
+  },{
+    id: 4,name: '常熟', css:'cs'
+  },{
+    id: 5,name: '张家港', css:'zjg'
+  },{
+    id: 6,name: '相城区', css:'xc'
+  },{
+    id: 7,name: '吴江区', css:'wj'
+  },{
+    id: 8,name: '高新区', css:'gx'
+  },{
+    id: 9,name: '工业园区', css:'yq'
+  },{
+    id: 10,name: '昆山市', css:'ks'
+  }]
+  
   let now = new Date()
-  $('#todaySource').text('今日数据 '+ getTime(now).date)
-  $('#center_title').text('最新预警时间： '+ getTime(now).time)
+  $('#todaySource').text('今日数据 ' + getTime(now).date)
+  $('#center_title').text('最新预警时间： ' + getTime(now).time)
 
   let ss_chart = document.getElementById('ss_chart')
   let r_chart = document.getElementById('r_chart')
@@ -64,17 +87,17 @@ let h = JoinZero(time.getHours());
       let warningSource = new Array()
       $.each(v.warning, function (i, v) {
         let html = [
-          `<a href="javascript:void(0)" data-title="${v.type}">
-                        <div class="${v.level=='高'?'hot':v.level=='中'?'middle':'low'}">
+          `<a href="javascript:void(0)" data-title="${v.type}" data-id='${v.id}'>
+                        <div class="${v.level == '高' ? 'hot' : v.level == '中' ? 'middle' : 'low'}">
                             <dl>
                                 <dt><span>${v.type}</span><span class="s_r_fx">预警级别：${v.level}</span></dt>
                                 <dd>
                                     <h4>${v.title}</h4>
                                     <ol>
                                         <li class="_s"><em></em>民声诉求：${v.appealCount}</li>
-                                        <li class="_s"><em></em>涉事主体：${v.company}</li>
+                                        <li class="_s"><em></em>网络舆情：${v.sentimentCount}</li>
+                                        <li><em></em>涉事主体：${v.company}</li>
                                         <li><em></em>推送指令状态：${v.status}</li>
-                                        <li><em></em>网络舆情：${v.sentimentCount}</li>
                                     </ol>
                                 </dd>
                             </dl>
@@ -89,9 +112,9 @@ let h = JoinZero(time.getHours());
       let dataSource = new Array()
       $.each(v.dataSource, function (i, v) {
         let html = [
-          '<li class="'+dataSourceObj[v.type]+'">',
-          '<span class="ti">'+v.value+'</span>',
-          '<span>'+v.name+'</span>',
+          '<li class="' + dataSourceObj[v.type] + '">',
+          '<span class="ti">' + v.value + '</span>',
+          '<span>' + v.name + '</span>',
           '</li>',
         ].join('')
         dataSource.push(html)
@@ -116,11 +139,11 @@ let h = JoinZero(time.getHours());
         governmentCharName.push(v.name)
         governmentCharValue.push(v.value)
       })
-       //图表程序入口
+      //图表程序入口
       eChartsFn([
-        {obj:ss_chart,data:{name:companiesCharName,value:companiesCharValue}},
-        {obj:r_chart,data:{name:governmentCharName,value:governmentCharValue}},
-        {obj:t_chart_f,data:{name:areaCharName,value:areaCharValue}}
+        { obj: ss_chart, data: { name: companiesCharName, value: companiesCharValue } },
+        { obj: r_chart, data: { name: governmentCharName, value: governmentCharValue } },
+        { obj: t_chart_f, data: { name: areaCharName, value: areaCharValue } }
       ])
 
       //右侧图表专用数据
