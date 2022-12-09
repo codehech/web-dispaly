@@ -30,7 +30,6 @@ echarts.use([
   LineChart,
 ]);
 
-
 function fontSize(res) {
     let clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if (!clientWidth) return;
@@ -38,27 +37,24 @@ function fontSize(res) {
     return res * fontSize;
   }
 
-let eLineConfig_a = (...arr) =>{
+let eLineConfig = (...arr) =>{
     let optionL
     optionL = {
       grid: {
-        left: '5%',
-        right: '5%',
+        left: '10%',
+        right: '10%',
         top: '20%',
-        bottom: '10%',
-        containLabel: true
+        bottom: '30%'
       },
       tooltip: {
-        padding: [50, 50],
         trigger: 'axis',
-        extraCssText: 'width:4vw;height:4vh;background:#053E6E;border:none;border-radius:1rem;',
+        extraCssText: 'width:4vw;height:3vh;background:white;',
         textStyle: {
-          "fontSize": fontSize(0.10),
-          "color": '#fff'
+          "fontSize": fontSize(0.10)
         },
-        // axisPointer: {
-        //   type: 'shadow'
-        // }
+        axisPointer: {
+          type: 'shadow'
+        }
       },
       xAxis: {
         type: 'category',
@@ -77,7 +73,7 @@ let eLineConfig_a = (...arr) =>{
             y2: 0,
         },
         splitLine: { show: true, lineStyle: { color: ['#0079D2'], opacity: .2, width: 1, type: 'solid' } },
-        data: arr[0].name
+        data: arr[0].date
       },
       yAxis: {
         type: 'value',
@@ -89,35 +85,13 @@ let eLineConfig_a = (...arr) =>{
         },
         splitLine: { show: false },
       },
-      legend: {
-        itemWidth: 50,
-        orient: 'horizontal',
-        icon:'rect',
-        data:[{
-          name:'投诉声量',
-          textStyle: {fontWeight: 'normal', color: '#22FFE2'}
-        },{
-          name: '舆情声量',
-          textStyle: {fontWeight: 'normal', color: '#A68BFF'}
-          }],
-        x:'center',      //可设定图例在左、右、居中
-        y:'bottom',     //可设定图例在上、下、居中
-        padding:[1,0,0,0],   //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]
-        itemGap: 200,
-        itemHeight: 20,
-        textStyle: {
-          "fontSize": fontSize(0.10),
-          "padding": 20
-        },
-      },
       series: [
         {
-          name: '舆情声量',
-          data: arr[1].value,
+          data: arr[0].count,
           type: 'line',
           lineStyle:{
             width:5,
-            color:'#A68BFF'
+            color:'#52CBF0'
           },
           smooth: true,
           areaStyle: {
@@ -140,55 +114,19 @@ let eLineConfig_a = (...arr) =>{
               global: false // 缺省为 false
             }
           }
-        },
-        {
-          name: '投诉声量',
-          data: arr[0].value,
-          type: 'line',
-          lineStyle:{
-            width:5,
-            color:'#22FFE2'
-          },
-          smooth: true,
-          areaStyle: {
-            color: {
-              type: 'linear',
-              x: 0,
-              y: 1,
-              x2: 0,
-              y2: 0,
-              colorStops: [
-                {
-                  offset: .1,
-                  color: '#011941' // 0% 处的颜色
-                },
-                {
-                  offset: 1,
-                  color: '#52CBF0' // 100% 处的颜色
-                }
-              ],
-              global: false // 缺省为 false
-            }
-          }
-        },
+        }
       ]
     }
     return optionL
   }
   
 
-export default function eChartsDetail(objArray) {
-    let lintFt_a =  echarts.init(objArray[0]);
-    let optionLa = eLineConfig_a({name:[
-      '12.9',
-      '12.10',
-      '12.11',
-      '12.12',
-      '12.13'
-    ],value:[
-      10, 30, 80, 20, 10
-    ]},{value:[
-      5,20,15,80,20
-    ]});
-    optionLa && lintFt_a.setOption(optionLa); 
+export default function echartRight(objArray){
+    let optionL = new Array()
+    let line = new Array()
+    for (let index in objArray) {
+        optionL[index] = eLineConfig(objArray[index].value);
+        line[index] = echarts.init(document.getElementById(objArray[index]['idkey']));
+        optionL[index] && line[index].setOption(optionL[index]);
+    }
 }

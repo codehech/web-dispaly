@@ -77,7 +77,7 @@ let echartConfig = (...array) => {
       },
       type: 'value',
       boundaryGap: [0, 0.01],
-      splitLine: { show: true, lineStyle: { color: ['#0079D2'], opacity: .2, width: 1, type: 'solid' } },
+      splitLine: { show: true, lineStyle: { color: ['#0079D2'], opacity: .4, width: 1, type: 'solid' } },
     },
     yAxis: {
       axisLabel: {
@@ -110,101 +110,18 @@ let echartConfig = (...array) => {
   return option;
 }
 
-let eLineConfig = (...arr) =>{
-  let optionL
-  optionL = {
-    grid: {
-      left: '10%',
-      right: '10%',
-      top: '20%',
-      bottom: '30%'
-    },
-    tooltip: {
-      trigger: 'axis',
-      extraCssText: 'width:4vw;height:3vh;background:white;',
-      textStyle: {
-        "fontSize": fontSize(0.10)
-      },
-      axisPointer: {
-        type: 'shadow'
-      }
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      axisLabel: {
-        show: true,
-        fontFamily: '微软雅黑',
-        color: "#8EACE2",
-        margin:fontSize(0.10),
-        fontSize: fontSize(0.10)//28px就写0.28
-      },
-      grid: {
-          x: 10,
-          y: 1,
-          x2: 0,
-          y2: 0,
-      },
-      splitLine: { show: true, lineStyle: { color: ['#0079D2'], opacity: .2, width: 1, type: 'solid' } },
-      data: arr[0].name
-    },
-    yAxis: {
-      type: 'value',
-      axisLabel: {
-        show: true,
-        fontFamily: '微软雅黑',
-        color: "#8EACE2",
-        fontSize: fontSize(0.10)//28px就写0.28
-      },
-      splitLine: { show: false },
-    },
-    series: [
-      {
-        data: arr[0].value,
-        type: 'line',
-        lineStyle:{
-          width:5,
-          color:'#52CBF0'
-        },
-        smooth: true,
-        areaStyle: {
-          color: {
-            type: 'linear',
-            x: 0,
-            y: 1,
-            x2: 0,
-            y2: 0,
-            colorStops: [
-              {
-                offset: .1,
-                color: '#011941' // 0% 处的颜色
-              },
-              {
-                offset: 1,
-                color: '#52CBF0' // 100% 处的颜色
-              }
-            ],
-            global: false // 缺省为 false
-          }
-        }
-      }
-    ]
-  }
-  return optionL
-}
-
 
 export default function eChartsFn(objArray) {
-  let ssChart = echarts.init(objArray[0]);
-  let option = echartConfig({ name: ['光明乳业', '金鑫物业', '中一建集团', '华莱士餐饮', '万和物业'], value: [40, 60, 80, 75, 90] }, '#0A1C37', '#4ECFF6');
+  let ssChart = echarts.init(objArray[0].obj);
+  let option = echartConfig(objArray[0].data, '#0A1C37', '#4ECFF6');
   option && ssChart.setOption(option);
 
-  let rrChart = echarts.init(objArray[1]);
-  let option2 = echartConfig({ name: ['市司法局', '市中级法院', '市公安局', '市发改委', '市发改委'], value: [10, 60, 30, 40, 70] }, '#0A1C37', '#4ECFF6');
+  let rrChart = echarts.init(objArray[1].obj);
+  let option2 = echartConfig(objArray[1].data, '#0A1C37', '#4ECFF6');
   option2 && rrChart.setOption(option2);
 
-  let lfChart = echarts.init(objArray[2]);
-  let option3 = echartConfig({ name: ['昆山市', '太仓市', '张家港市', '吴中区', '工业园区', '高新区', '常熟市', '姑苏区', '吴江区', '相城区'], value: [10, 20, 30, 40, 50, 60, 70, 80, 90, 99] }, '#0A1C37', '#1CDE7D', {
+  let lfChart = echarts.init(objArray[2].obj);
+  let option3 = echartConfig(objArray[2].data, '#0A1C37', '#1CDE7D', {
     left: '8%',
     right: '8%',
     top: '16%',
@@ -213,43 +130,4 @@ export default function eChartsFn(objArray) {
   });
   option3 && lfChart.setOption(option3);
 
-
-  let optionLf = eLineConfig({name:[
-    '12.11',
-    '12.12',
-    '12.13',
-    '12.14',
-    '12.15'
-  ],value:[
-    80, 20, 40, 30, 10
-  ]});
-  let lineF = echarts.init(objArray[3]);
-
-  optionLf && lineF.setOption(optionLf);
-
-  let optionLs = eLineConfig({name:[
-    '12.11',
-    '12.12',
-    '12.13',
-    '12.14',
-    '12.15'
-  ],value:[
-    10, 20, 40, 80, 10
-  ]});
-  let lineFs = echarts.init(objArray[4]);
-
-  optionLs && lineFs.setOption(optionLs); 
-
-  let optionLt = eLineConfig({name:[
-    '12.11',
-    '12.12',
-    '12.13',
-    '12.14',
-    '12.15'
-  ],value:[
-    10, 30, 80, 20, 10
-  ]});
-  let lineFt = echarts.init(objArray[5]);
-
-  optionLt && lineFt.setOption(optionLt); 
 }
