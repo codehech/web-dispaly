@@ -22,7 +22,14 @@ $(function () {
     let mi = JoinZero(time.getMinutes());
     let s = JoinZero(time.getSeconds());
     /* 	return `${y}-${m}-${d}-${h}-${mi}-${s}`; */
-    return { date: `${y}-${m}-${d}`, time: `${y}-${m}-${d}-${h}-${mi}-${s}` };
+    return { date: `${y}-${m}-${d}`, time: `${y}-${m}-${d} ${h}:${mi}:${s}` };
+  }
+
+  function Percentage(num, total) {
+    if (num == 0 || total == 0) {
+      return 0;
+    }
+    return (Math.round(num / total * 10000) / 100.00);// 小数点后两位百分比
   }
 
   const dataSourceObj = {
@@ -41,25 +48,25 @@ $(function () {
     id: 1, name: '姑苏区', css: 'gs'
   },
   {
-    id: 2,name: '吴中区', css:'wz'
-  },{
-    id: 3,name: '太仓', css:'tc'
-  },{
-    id: 4,name: '常熟', css:'cs'
-  },{
-    id: 5,name: '张家港', css:'zjg'
-  },{
-    id: 6,name: '相城区', css:'xc'
-  },{
-    id: 7,name: '吴江区', css:'wj'
-  },{
-    id: 8,name: '高新区', css:'gx'
-  },{
-    id: 9,name: '工业园区', css:'yq'
-  },{
-    id: 10,name: '昆山市', css:'ks'
+    id: 2, name: '吴中区', css: 'wz'
+  }, {
+    id: 3, name: '太仓', css: 'tc'
+  }, {
+    id: 4, name: '常熟', css: 'cs'
+  }, {
+    id: 5, name: '张家港', css: 'zjg'
+  }, {
+    id: 6, name: '相城区', css: 'xc'
+  }, {
+    id: 7, name: '吴江区', css: 'wj'
+  }, {
+    id: 8, name: '高新区', css: 'gx'
+  }, {
+    id: 9, name: '工业园区', css: 'yq'
+  }, {
+    id: 10, name: '昆山市', css: 'ks'
   }]
-  
+
   let now = new Date()
   $('#todaySource').text('今日数据 ' + getTime(now).date)
   $('#center_title').text('最新预警时间： ' + getTime(now).time)
@@ -127,10 +134,43 @@ $(function () {
       let companiesCharValue = new Array()
       let governmentCharName = new Array()
       let governmentCharValue = new Array()
+      let areaSource = new Array() //左下角区域地图数据专用
+      let newAreaCharArray = new Array()
+
+      let soundsCount = 0;
+      $.each(v.sounds, function (i, v) {
+        newAreaCharArray.push(v.value)
+        newAreaCharArray.sort(function (a, b) {
+          return b - a
+        });
+        soundsCount += v.value
+      })
+
       $.each(v.sounds, function (i, v) {
         areaCharName.push(v.name)
         areaCharValue.push(v.value)
+        let idName = citySourceObj[i].id == v.id ? citySourceObj[i].css : ''
+        let charHeight = 0;
+        soundsCount && !isNaN(soundsCount) ? charHeight = Percentage((v.value),soundsCount) : 0
+        charHeight = charHeight + '%'
+        let showName = parseFloat(v.value)>=newAreaCharArray[2]?'display:block':'display:none'
+        let html = [
+          `<div class="l1" id="${idName}">
+                        <div>
+                            <div style="height: ${charHeight};">
+                                <div class="flag" style="${showName}">
+                                    <p class="text">${v.name}</p>
+                                    <p class="text_1">${v.value}</p>
+                                </div>
+                                <div class="flex-col"></div>
+                            </div>
+                        </div>
+                    </div>`
+        ].join('')
+        areaSource.push(html)
       })
+      $('#map').html(areaSource)
+
       $.each(v.companies, function (i, v) {
         companiesCharName.push(v.name)
         companiesCharValue.push(v.value)
