@@ -203,8 +203,6 @@ $(function () {
       })
       $('#rightCharts').html(rightCharStr)
       echartRight(rightCharObjD)
-    } else {
-      alert('error')
     }
   })
 
@@ -237,9 +235,6 @@ $(function () {
           })
           $('#news').html(willLineArray)
         }
-      },
-      error: function () {
-        alert('请求超时')
       }
     })
   }
@@ -281,9 +276,6 @@ $(function () {
           })
           $('#sentiment').html(sentimentArray)
         }
-      },
-      error: function () {
-        alert('请求超时')
       }
     })
     $.ajax({
@@ -315,9 +307,6 @@ $(function () {
           })
           $('#will').html(willArray)
         }
-      },
-      error: function () {
-        alert('请求超时')
       }
     })
   }
@@ -336,9 +325,6 @@ $(function () {
       cache: false,
       success: function () {
 
-      },
-      error: function () {
-        alert('请求超时')
       }
     }).then((d) => {
       if (d.code == 200) {
