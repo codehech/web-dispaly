@@ -177,18 +177,8 @@ let eLineConfig_a = (...arr) =>{
   }
   
 
-export default function eChartsDetail(objArray) {
+export default function eChartsDetail(...objArray) {
     let lintFt_a =  echarts.init(objArray[0]);
-    let optionLa = eLineConfig_a({name:[
-      '12.9',
-      '12.10',
-      '12.11',
-      '12.12',
-      '12.13'
-    ],value:[
-      10, 30, 80, 20, 10
-    ]},{value:[
-      5,20,15,80,20
-    ]});
+    let optionLa = eLineConfig_a(objArray[1][0],objArray[1][1]);
     optionLa && lintFt_a.setOption(optionLa); 
 }

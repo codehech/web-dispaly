@@ -85,7 +85,7 @@ $(function () {
 
     },
     error: function () {
-      alert('error')
+      alert('请求超时')
     }
   }).then((d) => {
     if (d.code == 200) {
@@ -151,9 +151,9 @@ $(function () {
         areaCharValue.push(v.value)
         let idName = citySourceObj[i].id == v.id ? citySourceObj[i].css : ''
         let charHeight = 0;
-        soundsCount && !isNaN(soundsCount) ? charHeight = Percentage((v.value),soundsCount) : 0
+        soundsCount && !isNaN(soundsCount) ? charHeight = Percentage((v.value), soundsCount) : 0
         charHeight = charHeight + '%'
-        let showName = parseFloat(v.value)>=newAreaCharArray[2]?'display:block':'display:none'
+        let showName = parseFloat(v.value) >= newAreaCharArray[2] ? 'display:block' : 'display:none'
         let html = [
           `<div class="l1" id="${idName}">
                         <div>
@@ -208,11 +208,167 @@ $(function () {
     }
   })
 
-  $('#center_content').off().on('click', function () {
-    let title = $(this).data('title');
-    pageValue.ti = title;
+
+  let ms_list = () =>{
+    $.ajax({
+      url: domain + '/dev-api/willLine',
+      type: 'GET',
+      data: { _v: Math.random()},
+      dataType: 'json',
+      async: true,
+      cache: false,
+      success: function (d) {
+        if (d.code == 200) {
+          let v = d.rows || null
+          let willLineArray = new Array()
+          $.each(v, function (i, v) {
+            let html=[`
+            <a href="javascript:void(0)">
+                <div class="_al_r_co_l">${v.dateTime.replace(' ','<br/>')}</div>
+                <div class="_al_r_co_r">
+                    <em class="_s"></em>
+                    <h6>${v.title}</h6>
+                    <p>${v.content}</p>
+                    <p><span>来源信息： ${v.source}</span><span>事件类型：${v.type}</span></p>
+                </div>
+            </a>
+            `].join('')
+            willLineArray.push(html)
+          })
+          $('#news').html(willLineArray)
+        }
+      },
+      error: function () {
+        alert('请求超时')
+      }
+    })
+  }
+
+  $('#m_chose').find('a').off().on('click',function(){
+    let idname = $(this).attr('id')
+    $(this).addClass('check').siblings().removeClass("check");
+    $('.n-list-chk').hide()
+    $('#'+idname.replace('m_','')).show()
+  })
+
+  let w_sList =() =>{
+    $.ajax({
+      url: domain + '/dev-api/sentiment',
+      type: 'GET',
+      data: { _v: Math.random()},
+      dataType: 'json',
+      async: true,
+      cache: false,
+      success: function (d) {
+        if (d.code == 200) {
+          let v = d.rows || null
+          let sentimentArray = new Array()
+          $('#m_sentiment').text('网络舆情 （'+d.total+'）')
+          $.each(v, function (i, v) {
+            let html=[`
+            <a href="javascript:void(0)">
+                <div class="icon_nl">
+                    <img src="//${v.imgUrl}" alt="">
+                </div>
+                <div class="content_nl">
+                    <h6>${v.title}</h6>
+                    <p>${v.content}</p>
+                    <p><span>时间：${v.dateTime}</span><span>来源：${v.source}</span><span>事件类型：${v.type}</span></p>
+                </div>
+            </a>
+            `].join('')
+            sentimentArray.push(html)
+          })
+          $('#sentiment').html(sentimentArray)
+        }
+      },
+      error: function () {
+        alert('请求超时')
+      }
+    })
+    $.ajax({
+      url: domain + '/dev-api/will',
+      type: 'GET',
+      data: { _v: Math.random()},
+      dataType: 'json',
+      async: true,
+      cache: false,
+      success: function (d) {
+        if (d.code == 200) {
+          let v = d.rows || null
+          let willArray = new Array()
+          $('#m_will').text('民声诉求 （'+d.total+'）')
+          $.each(v, function (i, v) {
+            let html=[`
+            <a href="javascript:void(0)">
+                <div class="icon_nl">
+                    <img src="//${v.imgUrl}" alt="">
+                </div>
+                <div class="content_nl">
+                    <h6>${v.title}</h6>
+                    <p>${v.content}</p>
+                    <p><span>时间：${v.dateTime}</span><span>来源：${v.source}</span><span>事件类型：${v.type}</span></p>
+                </div>
+            </a>
+            `].join('')
+            willArray.push(html)
+          })
+          $('#will').html(willArray)
+        }
+      },
+      error: function () {
+        alert('请求超时')
+      }
+    })
+  }
+
+
+  let getDetailChar = (...arr) => {
+    let id = arr[0]
+    w_sList()
+    ms_list()
+    $.ajax({
+      url: domain + '/dev-api/warning/' + id,
+      type: 'GET',
+      data: { _v: Math.random() },
+      dataType: 'json',
+      async: true,
+      cache: false,
+      success: function () {
+
+      },
+      error: function () {
+        alert('请求超时')
+      }
+    }).then((d) => {
+      if (d.code == 200) {
+        let v = d.data || null
+        let html_ti = `
+        <h5>${v.type} <span>预警级别：${v.level}</span>
+            <p>指令推送状态：${v.status}</p>
+            <p class="_ll">最新预警时间：${v.dateTime}</p>
+        </h5>
+        <h4>${v.title}</h4>
+        <h6>涉事主体：${v.company}</h6>`
+        $('#tiContent').html(html_ti)
+        v.level=='高'?$('#tiContent').parent().removeClass().addClass('al_hot'):v.level=='中'?$('#tiContent').parent().removeClass().addClass('al_middle'):$('#tiContent').parent().removeClass().addClass('al_normal')
+        
+        let dateArray =v.appealDate
+        let appealCount = v.appealCount
+        let sentimentCount = v.sentimentCount
+        let dataObj = [{name:dateArray,value:appealCount},{name:dateArray,value:sentimentCount}] //第一个数据是上诉
+        eChartsDetail(document.getElementById('linchar_a'),dataObj)
+      }
+    })
+  }
+  $('#center_content').off().on('click','a', function () {
+    let title = $(this).data('title')
+    let id = $(this).data('id')
+   
+    pageValue.ti = title
+    
+    getDetailChar(id)
     $('#box-alert').css('visibility', 'visible')
-    eChartsDetail([document.getElementById('linchar_a')])
   })
   $('#close').off().on('click', function () {
     $('#box-alert').css('visibility', 'hidden')
@@ -227,7 +383,7 @@ if (module.hot) {
   })
 }
 
-function changeToPercent(num) {
+/* function changeToPercent(num) {
   if (!/\d+\.?\d+/.test(num)) {
     alert("必须为数字");
   }
@@ -238,7 +394,7 @@ function changeToPercent(num) {
   }
   return result.substr(0, index + 5) + "%";
 }
-console.log(changeToPercent(200 / 400))
+console.log(changeToPercent(200 / 400)) */
 
 export default function pageValueS() {
   return pageValue
