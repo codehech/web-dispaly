@@ -4,6 +4,7 @@ import eChartsFn from './js/action'
 import echartRight from './js/rightcharts'
 import eChartsDetail from './js/detail'
 let pageValue = {}
+//const domain = /* document.domain || */ "//192.180.0.183:8080"
 const domain = /* document.domain || */ "//172.18.70.45:81"
 
 $(function () {
