@@ -4,8 +4,8 @@ import eChartsFn from './js/action'
 import echartRight from './js/rightcharts'
 import eChartsDetail from './js/detail'
 let pageValue = {}
-//const domain = /* document.domain || */ "//192.180.0.183:8080"
-const domain = /* document.domain || */ "//172.18.70.45:81"
+//const domain = /* document.domain || */ "//172.18.70.45:8080"
+const domain = /* document.domain || */ "//2.46.210.180:8443/service"
 
 $(function () {
 
@@ -76,7 +76,7 @@ $(function () {
   let r_chart = document.getElementById('r_chart')
   let t_chart_f = document.getElementById('t-chart-f')
   $.ajax({
-    url: domain + '/dev-api/largeScreen',
+    url: domain + '/largeScreen',
     type: 'GET',
     data: {},
     dataType: 'json',
@@ -210,7 +210,7 @@ $(function () {
 
   let ms_list = () =>{
     $.ajax({
-      url: domain + '/dev-api/willLine',
+      url: domain + '/willLine',
       type: 'GET',
       data: { _v: Math.random()},
       dataType: 'json',
@@ -249,7 +249,7 @@ $(function () {
 
   let w_sList =() =>{
     $.ajax({
-      url: domain + '/dev-api/sentiment',
+      url: domain + '/sentiment',
       type: 'GET',
       data: { _v: Math.random()},
       dataType: 'json',
@@ -280,7 +280,7 @@ $(function () {
       }
     })
     $.ajax({
-      url: domain + '/dev-api/will',
+      url: domain + '/will',
       type: 'GET',
       data: { _v: Math.random()},
       dataType: 'json',
@@ -318,7 +318,7 @@ $(function () {
     w_sList()
     ms_list()
     $.ajax({
-      url: domain + '/dev-api/warning/' + id,
+      url: domain + '/warning/' + id,
       type: 'GET',
       data: { _v: Math.random() },
       dataType: 'json',
