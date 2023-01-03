@@ -8,7 +8,6 @@ let pageValue = {}
 const domain = /* document.domain || */ "//2.46.210.180:8443/service"
 
 $(function () {
-
   // 补零函数
   function JoinZero(num) {
     return num < 10 ? '0' + num : num;
@@ -351,13 +350,14 @@ $(function () {
   $('#center_content').off().on('click','a', function () {
     let title = $(this).data('title')
     let id = $(this).data('id')
-   
+    $(window.parent.document).find("#a_b_c").show()
     pageValue.ti = title
     
     getDetailChar(id)
     $('#box-alert').css('visibility', 'visible')
   })
   $('#close').off().on('click', function () {
+    $(window.parent.document).find("#a_b_c").hide()
     $('#box-alert').css('visibility', 'hidden')
   })
 })
