@@ -139,14 +139,14 @@ module.exports = {
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/list.html"),
-            title: '列表',
+            title: '民声民意舆情分析预警平台',
             filename: "pages/list.html",
-            chunks: ['main']
+            chunks: ['app']
         }),
         // 提取css成单独文件
         new MiniCssExtractPlugin({
             // 定义输出文件名和目录
-            filename: "static/css/main.css",
+            filename: "static/css/[name].css",
         }),
     ],
     // 开发服务器

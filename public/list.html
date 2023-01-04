@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +9,148 @@
         <%= htmlWebpackPlugin.options.title %>
     </title>
 </head>
+
 <body>
-    <div class="content">
-        <div style="background-color: #fff; position: relative;width: 100vw; height: 100vh;">
-            <div style="background-color: #666; position: absolute; left: 0; top: 10%; height: 50vh; width: 50vw;"></div>
+    <div class="box-alert" id="box-alert" style="visibility:hidden">
+        <div class="alert-content">
+            <a href="javascript:void(0)" id="close"></a>
+            <div class="al_middle">
+                <!--al_middle,al_normal-->
+                <a href="javascript:void(0)" id="tiContent">
+                    <!-- <h5>一事多诉 <span>预警级别：高</span>
+                        <p>指令推送状态：未处理</p>
+                        <p class="_ll">最新预警时间：2022.12.15 12</p>
+                    </h5>
+                    <h4>居民投诉6号线地铁站夜间施工吵的问题</h4>
+                    <h6>涉事主体：XXXXXXXXXXXX</h6> -->
+                </a>
+                <div class="l-c-list">
+                    <div class="_al_left">
+                        <h5>民声趋势分析：</h5>
+                        <div class="linchar_a" id="linchar_a">
+
+                        </div>
+                        <h5 class="m-top-4" id="m_chose">民声舆情明细：<a class="check" href="javascript:void(0)"
+                                id="m_will">民声诉求 0</a> <a href="javascript:void(0)" id="m_sentiment">网络舆情 （）</a></h5>
+                        <div class="n-list-chk" id="will">
+                            <!--  <a href="javascript:void(0)">
+                                <div class="icon_nl">
+                                    <img src="<%=require('../src/css/imgs/ico1.png')%>" alt="">
+                                </div>
+                                <div class="content_nl">
+                                    <h6>反映星明街6号线施工噪音无人处理</h6>
+                                    <p>夜间施工噪音很大，小区很多居民已经反映过了，仍然无人处理</p>
+                                    <p><span>时间：2022.12.10</span><span>来源：寒山闻钟</span><span>事件类型：城市管理</span></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="icon_nl">
+                                    <img src="<%=require('../src/css/imgs/ico2.png')%>" alt="">
+                                </div>
+                                <div class="content_nl">
+                                    <h6>反映6号线地铁夜间使用噪音大问题</h6>
+                                    <p>来电反映6号线夜间施工噪音大的问题，地址6号线星明街旁</p>
+                                    <p><span>时间：2022.12.10</span><span>来源：18837489897</span><span>事件类型：城市管理</span>
+                                    </p>
+                                </div>
+                            </a> -->
+                        </div>
+                        <div class="n-list-chk" style="display: none;" id="sentiment">
+
+                        </div>
+                    </div>
+                    <div class="_al_right">
+                        <h5>民声脉络：</h5>
+                        <div id="news">
+                            <!--                                 <a href="javascript:void(0)">
+                                <div class="_al_r_co_l">2022.12.15<br />09:13</div>
+                                <div class="_al_r_co_r">
+                                    <em class="_s"></em>
+                                    <h6>再次投诉地铁夜间施工</h6>
+                                    <p>6号线的星明街口，每天晚上10点左右开始晚上10点左右开始吵个不停，施工噪音很大很大，多少投诉仍然无…</p>
+                                    <p><span>来源信息XXXX</span><span>事件类型：XXXXXX</span></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="_al_r_co_l">2022.12.15<br />09:13</div>
+                                <div class="_al_r_co_r">
+                                    <em></em>
+                                    <h6>再次投诉地铁夜间施工</h6>
+                                    <p>6号线的星明街口，每天晚上10点左右开始晚上10点左右开始吵个不停，施工噪音很大很大，多少投诉仍然无…</p>
+                                    <p><span>来源信息XXXX</span><span>事件类型：XXXXXX</span></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="_al_r_co_l">2022.12.15<br />09:13</div>
+                                <div class="_al_r_co_r">
+                                    <em></em>
+                                    <h6>再次投诉地铁夜间施工</h6>
+                                    <p>6号线的星明街口，每天晚上10点左右开始晚上10点左右开始吵个不停，施工噪音很大很大，多少投诉仍然无…</p>
+                                    <p><span>来源信息XXXX</span><span>事件类型：XXXXXX</span></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="_al_r_co_l">2022.12.15<br />09:13</div>
+                                <div class="_al_r_co_r">
+                                    <em></em>
+                                    <h6>再次投诉地铁夜间施工</h6>
+                                    <p>6号线的星明街口，每天晚上10点左右开始晚上10点左右开始吵个不停，施工噪音很大很大，多少投诉仍然无…</p>
+                                    <p><span>来源信息XXXX</span><span>事件类型：XXXXXX</span></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="_al_r_co_l">2022.12.15<br />09:13</div>
+                                <div class="_al_r_co_r">
+                                    <em></em>
+                                    <h6>再次投诉地铁夜间施工</h6>
+                                    <p>6号线的星明街口，每天晚上10点左右开始晚上10点左右开始吵个不停，施工噪音很大很大，多少投诉仍然无…</p>
+                                    <p><span>来源信息XXXX</span><span>事件类型：XXXXXX</span></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="_al_r_co_l">2022.12.15<br />09:13</div>
+                                <div class="_al_r_co_r">
+                                    <em></em>
+                                    <h6>再次投诉地铁夜间施工</h6>
+                                    <p>6号线的星明街口，每天晚上10点左右开始晚上10点左右开始吵个不停，施工噪音很大很大，多少投诉仍然无…</p>
+                                    <p><span>来源信息XXXX</span><span>事件类型：XXXXXX</span></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="_al_r_co_l">2022.12.15<br />09:13</div>
+                                <div class="_al_r_co_r">
+                                    <em></em>
+                                    <h6>再次投诉地铁夜间施工</h6>
+                                    <p>6号线的星明街口，每天晚上10点左右开始晚上10点左右开始吵个不停，施工噪音很大很大，多少投诉仍然无…</p>
+                                    <p><span>来源信息XXXX</span><span>事件类型：XXXXXX</span></p>
+                                </div>
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="b_left">
+            <div class="_li_f">
+                <ul class="t_j_list" id="t_j_list">
+                   
+                </ul>
+            </div>
+            <div class="_li_s"></div>
+            <div class="_li_t"></div>
+        </div>
+        <div class="b_center b_hot">
+            2
+        </div>
+        <div class="b_center b_area">
+            3
+        </div>
+        <div class="b_right">
+
         </div>
     </div>
 </body>
+
 </html>

@@ -4,8 +4,8 @@ import eChartsFn from './js/action'
 import echartRight from './js/rightcharts'
 import eChartsDetail from './js/detail'
 let pageValue = {}
-//const domain = /* document.domain || */ "//172.18.70.45:8080"
-const domain = /* document.domain || */ "//2.46.210.180:8443/service"
+const domain = /* document.domain || */ "//172.18.70.45:8080"
+//const domain = /* document.domain || */ "//2.46.210.180:8443/service"
 
 $(function () {
   // 补零函数
