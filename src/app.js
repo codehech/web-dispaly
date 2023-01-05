@@ -5,8 +5,8 @@ import echartRight from './js/rightcharts_32k'
 import eChartsDetail from './js/detail_32k'
 let pageValue = {}
 
-const domain = /* document.domain || */ "//172.18.70.45:8080"
-//const domain = /* document.domain || */ "//2.46.210.180:8443/service"
+// const domain = /* document.domain || */ "//172.18.70.45:8080"
+const domain = /* document.domain || */ "//2.46.210.180:8443/service"
 $(function () {
     function Percentage(num, total) {
         if (num == 0 || total == 0) {
