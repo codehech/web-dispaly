@@ -1,7 +1,7 @@
 import $ from 'jquery'
-import "./css/list.less"
-import eChartsFn from './js/action_32k'
-import echartRight from './js/rightcharts_32k'
+import "./css/screen.less"
+import eChartsFn from './js/action_s'
+import echartRight from './js/rightcharts_s'
 import eChartsDetail from './js/detail_32k'
 let pageValue = {}
 
@@ -54,6 +54,7 @@ $(function () {
     let ss_chart = document.getElementById('ss_chart')
     let r_chart = document.getElementById('r_chart')
     let t_chart_f = document.getElementById('t-chart-f')
+    let hs_chart = document.getElementById('hs_chart')
     $.ajax({
         url: domain + '/largeScreen',
         type: 'GET',
@@ -137,7 +138,9 @@ $(function () {
             })
 
             $.each(v.government, function (i, v) {
-                governmentCharName.push(v.name)
+                let name = v.name;
+                // v.name.length>7?name = v.name.substring(0,7)+'\n'+v.name.substring(8,v.name.length):name = v.name
+                governmentCharName.push(name)
                 governmentCharValue.push(v.value)
             })
 
@@ -182,23 +185,13 @@ $(function () {
             ])
 
             //右侧图表专用数据
-            let rightCharStr = new Array();
-            let rightCharObjD = new Array();
-
+            let rightCharObjD = new Array()
+            let rightCharName = new Array()
             $.each(v.words, function (i, v) {
-                let html = [
-                    '<div class="' + (i == 0 ? 'r-li-f' : i == 1 ? 'r-li-s' : i == 2 ? 'r-li-t' : 'r-li-t-t') + '">',
-                    '<span class="r-l">' + v.word + '</span><span class="r-r">声量：' + (v.count.slice(-1) || 0) + '</span>',
-                    '<div class="linbox" id="hs_' + i + '"></div>',
-                    '</div>',
-                ].join('');
-                if (i < 4) {
-                    rightCharStr.push(html)
-                    rightCharObjD.push({ idkey: 'hs_' + i, value: v })
-                }
+                rightCharName.push(v.word)
+                rightCharObjD.push(v.count)
             })
-            $('#rightCharts').html(rightCharStr)
-            echartRight(rightCharObjD)
+            echartRight({obj: hs_chart, data: { name: rightCharName, value: rightCharObjD }})
         }
     })
 
@@ -356,10 +349,58 @@ $(function () {
         //$(window.parent.document).find("#a_b_c").hide()
         $('#box-alert').css('visibility', 'hidden')
     })
+
+    let c = () => {
+        let bigBox = document.querySelector('#_s_box')
+        let primary = document.querySelector('#r_chart')
+        let copy = document.querySelector('#copy')
+        scroll(bigBox, primary, copy, 30)
+    }
+    c()
 })
 
+function scroll(bigBox, primary, copy, time) {
+    if (bigBox.clientHeight >= primary.scrollHeight) {
+        // 不需要滚动
+        return;
+    }
+    let num = 0;
+    copy.innerHTML = primary.innerHTML; // 滚动到内容结束时不会留白
+    bigBox.scrollTop = 0;
+    // 初始化自动滚动
+    let timer = setInterval(function () {
+        if (bigBox.scrollTop >= primary.scrollHeight) {
+            // 滚动到内容结束时，又重头开始
+            bigBox.scrollTop = 0;
+            num = 0;
+        } else {
+            num++;
+            bigBox.scrollTop = num;
+        }
+    }, time);
+    // 鼠标移入停止滚动
+    bigBox.onmouseover = function () {
+        clearInterval(timer);
+    };
+    // 鼠标移出继续滚动
+    bigBox.onmouseout = function () {
+        // 接着鼠标移出的地方
+        num = bigBox.scrollTop >= primary.scrollHeight ? bigBox.scrollTop - primary.scrollHeight : bigBox.scrollTop;
+        bigBox.scrollTop = num;
+        timer = setInterval(function () {
+            if (bigBox.scrollTop >= primary.scrollHeight) {
+                bigBox.scrollTop = 0;
+                num = 0;
+            } else {
+                num++;
+                bigBox.scrollTop = num;
+            }
+        }, time);
+    };
+}
+
 if (module.hot) {
-    module.hot.accept(['./js/math', './js/action_32k','./js/detail_32k','./js/rightcharts_32k'], function () {
+    module.hot.accept(['./js/math', './js/action_32k', './js/detail_32k', './js/rightcharts_32k'], function () {
         //更新文件模块后执行操作
     })
 }

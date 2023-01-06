@@ -1,7 +1,7 @@
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 import * as echarts from 'echarts/core';
 // 引入柱状图图表，图表后缀都为 Chart
-import { BarChart,LineChart } from 'echarts/charts';
+import {LineChart } from 'echarts/charts';
 // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
 import {
   TitleComponent,
@@ -23,7 +23,6 @@ echarts.use([
   GridComponent,
   DatasetComponent,
   TransformComponent,
-  BarChart,
   LabelLayout,
   UniversalTransition,
   CanvasRenderer,
@@ -111,23 +110,8 @@ let echartConfig = (...array) => {
 }
 
 
-export default function eChartsFn(objArray) {
-  let ssChart = echarts.init(objArray[0].obj);
-  let option = echartConfig(objArray[0].data, '#0A1C37', '#4ECFF6');
-  option && ssChart.setOption(option);
-
-  let rrChart = echarts.init(objArray[1].obj);
-  let option2 = echartConfig(objArray[1].data, '#0A1C37', '#4ECFF6');
-  option2 && rrChart.setOption(option2);
-
-  let lfChart = echarts.init(objArray[2].obj);
-  let option3 = echartConfig(objArray[2].data, '#0A1C37', '#1CDE7D', {
-    left: '8%',
-    right: '8%',
-    top: '16%',
-    bottom: '5%',
-    containLabel: true
-  });
-  option3 && lfChart.setOption(option3);
-
+export default function echartRight(objArray){
+  let hsChart = echarts.init(objArray.obj);
+  let option = echartConfig(objArray.data, '#0A1C37', '#FECB34');
+  option && hsChart.setOption(option);
 }

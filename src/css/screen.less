@@ -369,15 +369,13 @@ body {
 
         &.b_left {
             width: 22vw;
-
+            position: relative;
             >div {
                 height: 29.6%;
-                margin-bottom: 6.3%;
-
                 &._li_f {
                     background: url('../images/data3x.png') no-repeat;
                     background-size: 100% 100%;
-
+                    margin-bottom: 6.3%;
                     ul {
                         box-sizing: border-box;
                         padding: 8vh 0 0 .5vw;
@@ -462,18 +460,23 @@ body {
                 }
 
                 &._li_s {
-                    background: url('../images/main3x.png') no-repeat;
+                    background: url('../images/n_l@3x.png') no-repeat;
                     background-size: 100% 100%;
-
+                    height: 65%;
+                    width: 47%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
                     >div {
                         box-sizing: border-box;
                         &._ss_t{
                             width: 100%;
-                            height: 20%;
+                            height: 10%;
                         }
                         &._ss_c {
                             width: 100%;
-                            height: 80%;
+                            height: 90%;
+                            padding-top: 2%;
                             box-sizing: border-box;
                             overflow-y: scroll;
                             &::-webkit-scrollbar {
@@ -482,7 +485,7 @@ body {
                             >div{
                                 &.c {
                                     width: 100%;
-                                    height: 60vh;
+                                    height: 95%;
                                 }
                             }
                         }
@@ -490,17 +493,21 @@ body {
                 }
 
                 &._li_t {
-                    background: url('../images/co3x.png') no-repeat;
+                    background: url('../images/n_r@3x.png') no-repeat;
                     background-size: 100% 100%;
-
+                    height: 65%;
+                    width: 47%;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
                     >div {
                         &._ss_t{
                             width: 100%;
-                            height: 20%;
+                            height: 10%;
                         }
                         &._ss_r{
                             width: 100%;
-                            height: 80%;
+                            height: 90%;
                             overflow-y: scroll;
                             &::-webkit-scrollbar {
                                 width: 0 !important
@@ -523,52 +530,12 @@ body {
                 box-sizing: border-box;
 
                 >div {
-                    width: 80%;
-                    height: 18vh;
+                    width: 100%;
                     margin: 0 auto 2vh auto;
                     overflow: hidden;
-
-                    >span {
-                        display: inline-block;
-                        padding: 1.2vh .10vw;
-                        box-sizing: border-box;
-
-                        &.r-l {
-                            width: 30%;
-                            margin-left: 1.5vw;
-                            text-align: left;
-                            font-size: .5vw;
-                            color: #ffff;
-                        }
-
-                        &.r-r {
-                            text-align: right;
-                            width: 50%;
-                            font-size: .4vw;
-                            color: #8EACE2;
-                        }
+                    &.hs_chart{
+                        height: 58%;
                     }
-
-                    &.r-li-f {
-                        background: url('./imgs/1@3x.png') no-repeat left top;
-                        background-size: 100% 100%;
-                    }
-
-                    &.r-li-s {
-                        background: url('./imgs/2@3x.png') no-repeat left top;
-                        background-size: 100% 100%;
-                    }
-
-                    &.r-li-t {
-                        background: url('./imgs/3@3x.png') no-repeat left top;
-                        background-size: 100% 100%;
-                    }
-
-                    &.r-li-t-t {
-                        background: url('./imgs/4@3x.png') no-repeat left top;
-                        background-size: 100% 100%;
-                    }
-
                     .linbox {
                         width: 100%;
                         height: 15vh;

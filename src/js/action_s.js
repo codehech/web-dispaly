@@ -41,6 +41,13 @@ function fontSize(res) {
 
 let echartConfig = (...array) => {
   let option;
+  // let style = array[3] || {
+  //   left: '-20%',
+  //   right: '5%',
+  //   top: '0',
+  //   bottom: '1%',
+  //   containLabel: true
+  // }
   let style = array[3] || {
     left: '5%',
     right: '5%',
@@ -59,13 +66,17 @@ let echartConfig = (...array) => {
     },
     tooltip: {
       trigger: 'axis',
-      extraCssText: 'width:3vw;height:5vh;background:white;',
+      extraCssText: 'width:auto;height:6vh;background:white;',
       textStyle: {
         "fontSize": fontSize(0.08)
       },
       axisPointer: {
         type: 'shadow'
-      }
+      },
+      // formatter: function(params) {
+      //   console.log(params)
+      //   return `<div style="display:block;max-width: 200px;word-break: break-all;word-wrap: break-word;white-space:pre-wrap">${params[0].name} <p>${params[0].value}</p></div>`
+      // }
     },
     grid: style,
     xAxis: {
@@ -84,6 +95,13 @@ let echartConfig = (...array) => {
         show: true,
         fontFamily: '微软雅黑',
         color: "#fff",
+        // margin: 180,//刻度标签与轴线之间的距离。
+        // left: -8,//整个echart位置
+        // textStyle: {
+        //   align: 'left' 
+        //   baseline:"top",
+        // },
+        // lineHeight: fontSize(0.2),    // 行高 ）
         fontSize: fontSize(0.08)//28px就写0.28
       },
       type: 'category',
@@ -117,7 +135,13 @@ export default function eChartsFn(objArray) {
   option && ssChart.setOption(option);
 
   let rrChart = echarts.init(objArray[1].obj);
-  let option2 = echartConfig(objArray[1].data, '#0A1C37', '#4ECFF6');
+  let option2 = echartConfig(objArray[1].data, '#0A1C37', '#4ECFF6',{
+    left: '5%',
+    right: '5%',
+    top: '0',
+    bottom: '3%',
+    containLabel: true
+  });
   option2 && rrChart.setOption(option2);
 
   let lfChart = echarts.init(objArray[2].obj);
