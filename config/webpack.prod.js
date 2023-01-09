@@ -33,7 +33,8 @@ module.exports = {
         action: './src/js/action.js',
         app: './src/app.js',
         math: './src/js/math.js',
-        screen: './src/js/screen.js',
+        screen: './src/screen.js',
+        screen_c: './src/screen_c.js'
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
@@ -126,6 +127,7 @@ module.exports = {
                 "../node_modules/.cache/.eslintcache"
             ),
             threads, // 开启多进程
+            fix:true
         }),
         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
@@ -155,6 +157,12 @@ module.exports = {
             title:'民声民意舆情分析预警平台',
             filename: "pages/screen.html",
             chunks:['screen']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "../public/screen_c.html"),
+            title: '民声民意舆情分析预警平台',
+            filename: "pages/screen_c.html",
+            chunks: ['screen_c']
         }),
         // 提取css成单独文件
         new MiniCssExtractPlugin({

@@ -1,6 +1,6 @@
 import $ from 'jquery'
-import "./css/screen.less"
-import tab_cloud from "./js/public/cloud"
+import "./css/screen_c.less"
+// import tab_cloud from "./js/public/cloud"
 import eChartsFn from './js/action_s'
 import echartRight from './js/rightcharts_s'
 import eChartsDetail from './js/detail_32k'
@@ -55,7 +55,7 @@ $(function () {
     let ss_chart = document.getElementById('ss_chart')
     let r_chart = document.getElementById('r_chart')
     let t_chart_f = document.getElementById('t-chart-f')
-    let hs_chart = document.getElementById('hs_chart')
+    let hs_chart = document.getElementById('hs_chart') || null
     $.ajax({
         url: domain + '/largeScreen',
         type: 'GET',
@@ -228,7 +228,7 @@ $(function () {
             echartRight({ obj: hs_chart, data: { name: rightCharName, value: rightCharObjD } })
 
             //标签云
-            let sortId_c = (a, b) => {
+          /*   let sortId_c = (a, b) => {
                 return a.count - b.count;
             }
             let wordCloud_d = v.wordCloud.sort(sortId_c)
@@ -241,7 +241,7 @@ $(function () {
             })
             $('#tagbox').html(cloudArray)
 
-            tab_cloud()
+            tab_cloud() */
         }
     })
 
@@ -278,6 +278,7 @@ $(function () {
         })
     }
 
+    /*
     $('#m_chose').find('a').off().on('click', function () {
         let idname = $(this).attr('id')
         $(this).addClass('check').siblings().removeClass("check");
@@ -285,7 +286,7 @@ $(function () {
         $('#' + idname.replace('m_', '')).show()
     })
 
-    let w_sList = () => {
+     let w_sList = () => {
         $.ajax({
             url: domain + '/sentiment',
             type: 'GET',
@@ -348,11 +349,11 @@ $(function () {
                 }
             }
         })
-    }
+    } */
 
     let getDetailChar = (...arr) => {
         let id = arr[0]
-        w_sList()
+        // w_sList()
         ms_list()
         $.ajax({
             url: domain + '/warning/' + id,

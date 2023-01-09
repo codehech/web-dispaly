@@ -106,7 +106,7 @@ let eLineConfig_a = (...arr) =>{
         itemGap: 200,
         itemHeight: 20,
         textStyle: {
-          "fontSize": fontSize(0.08),
+          "fontSize": fontSize(0.1),
           "padding": 20
         },
       },
