@@ -88,7 +88,17 @@ $(function () {
             }
             let warningConut_d = warningJsonArray.sort(sortId_w)
 
-           
+            $.each(warningConut_d, function (i, v) {
+                let html = [
+                    ` <div>
+                        <h2>${v.count}</h2>
+                        <span>${v.key == 'v200000' ? '突发事件' : v.key == 'v300000' ? '苗头事件' : '一事多诉'}</span>
+                    </div>
+                    `
+                ].join('')
+                warningConut.push(html)
+            })
+            $('#center_title').html(warningConut)
 
             //重新按类别封装分析研判json数据
             let f_warningConut_d = new Array()
@@ -106,76 +116,44 @@ $(function () {
             })
             //--end
 
-            $.each(warningConut_d, function (i, v) {
-                let html = [
-                    ` <div>
-                        <h2>${v.count}</h2>
-                        <span>${v.key == 'v200000' ? '突发事件' : v.key == 'v300000' ? '苗头事件' : '一事多诉'}</span>
-                    </div>
-                    `
-                ].join('')
-
-                warningConut.push(html)
-            })
-            $('#center_title').html(warningConut)
-
             let warningSource = new Array()
-            $.each(f_warningConut_d, function (i, v) {
-               
-                let contentArray = new Array()
-                $.each(v.content, function (i, d) {
-                    let html = [
-                        `<a href="javascript:void(0)" data-title="${d.type}" data-id='${d.id}'>
-                                  <div class="${d.level == '高' ? 'hot' : d.level == '中' ? 'middle' : 'low'}">
-                                      <dl>
-                                          <dt><span>${d.type}</span><span class="s_r_fx">预警级别：${d.level}</span></dt>
-                                          <dd>
-                                              <h4>${d.title.length > 25 ? d.title.substring(0, 26) + '...' : d.title}</h4>
-                                              <ol>
-                                                  <li class="_s"><em></em>民声诉求：${d.appealCount}</li>
-                                                  <li class="_s"><em></em>网络舆情：${d.sentimentCount}</li>
-                                                  <li><em></em>涉事主体：${d.company}</li>
-                                                  <li><em></em>推送指令状态：${d.status}</li>
-                                              </ol>
-                                          </dd>
-                                      </dl>
-                                  </div>
-                              </a>`
-                    ].join('')
-                    contentArray.push(html)
-                })
-                let outhtml = [
-                    `<div class="center_content" id="${v.type}">
-                    ${contentArray}
-                    </div>`
+            let warningSource_1 = new Array()
+            let warningSource_2 = new Array()
+            $.each(v.warning, function (i, v) {
+                let html = [
+                    `<a href="javascript:void(0)" data-title="${v.type}" data-id='${v.id}'>
+                              <div class="${v.level == '高' ? 'hot' : v.level == '中' ? 'middle' : 'low'}">
+                                  <dl>
+                                      <dt><span>${v.type}</span><span class="s_r_fx">预警级别：${v.level}</span></dt>
+                                      <dd>
+                                          <h4>${v.title.length > 25 ? v.title.substring(0, 26) + '...' : v.title}</h4>
+                                          <ol>
+                                              <li class="_s"><em></em>民声诉求：${v.appealCount}</li>
+                                              <li class="_s"><em></em>网络舆情：${v.sentimentCount}</li>
+                                              <li><em></em>涉事主体：${v.company}</li>
+                                              <li><em></em>推送指令状态：${v.status}</li>
+                                          </ol>
+                                      </dd>
+                                  </dl>
+                              </div>
+                          </a>`
                 ].join('')
                 
-                warningSource.push(outhtml)
+                if (v.typeOrigin == 'v400000') {
+                    warningSource.push(html)
+                } else if(v.typeOrigin == 'v300000'){
+                    warningSource_1.push(html)
+                } else{
+                    warningSource_2.push(html)
+                }
                 
             })
-            $('#center_content_c').html(warningSource)
-
-            $('.center_content').off().on('click', 'a', function () {
-                let title = $(this).data('title')
-                let id = $(this).data('id')
-                //$(window.parent.document).find("#a_b_c").show()
-                pageValue.ti = title
-        
-                getDetailChar(id)
-                $('#box-alert').css('visibility', 'visible')
-            })
+            $('#center_content').html(warningSource)
+            $('#center_content_1').html(warningSource_1)
+            $('#center_content_2').html(warningSource_2)
 
 
-            let div = document.querySelectorAll(".center_content")
-            $.each(div,function(i,v){
-                v.addEventListener("wheel", function (e) {
-                    //这里使用的是 chrom浏览器测试的,有一些Api不太准确 ,请大家注意!!!!
-                    let left = -e.wheelDelta || e.deltaY / 2
-                    //console.log('wheelDelta:', -e.wheelDelta, "deltaY :", e.deltaY)
-                    v.scrollLeft = v.scrollLeft + left
-                }); 
-            })
-           
+            
 
             //数据来源统计内容
             let areaCharName = new Array()
@@ -426,7 +404,15 @@ $(function () {
         })
     }
 
-    
+    $('.center_content').off().on('click', 'a', function () {
+        let title = $(this).data('title')
+        let id = $(this).data('id')
+        //$(window.parent.document).find("#a_b_c").show()
+        pageValue.ti = title
+
+        getDetailChar(id)
+        $('#box-alert').css('visibility', 'visible')
+    })
     $('#close').off().on('click', function () {
         //$(window.parent.document).find("#a_b_c").hide()
         $('#box-alert').css('visibility', 'hidden')
@@ -440,7 +426,28 @@ $(function () {
     }
     c()
 
-    
+    let div = document.querySelector("#center_content")
+    let div_1 = document.querySelector("#center_content_1")
+    let div_2 = document.querySelector("#center_content_2")
+
+    div.addEventListener("wheel", function (e) {
+        //这里使用的是 chrom浏览器测试的,有一些Api不太准确 ,请大家注意!!!!
+        let left = -e.wheelDelta || e.deltaY / 2
+        //console.log('wheelDelta:', -e.wheelDelta, "deltaY :", e.deltaY)
+        div.scrollLeft = div.scrollLeft + left
+    });
+    div_1.addEventListener("wheel", function (e) {
+        //这里使用的是 chrom浏览器测试的,有一些Api不太准确 ,请大家注意!!!!
+        let left = -e.wheelDelta || e.deltaY / 2
+        //console.log('wheelDelta:', -e.wheelDelta, "deltaY :", e.deltaY)
+        div_1.scrollLeft = div_1.scrollLeft + left
+    });
+    div_2.addEventListener("wheel", function (e) {
+        //这里使用的是 chrom浏览器测试的,有一些Api不太准确 ,请大家注意!!!!
+        let left = -e.wheelDelta || e.deltaY / 2
+        //console.log('wheelDelta:', -e.wheelDelta, "deltaY :", e.deltaY)
+        div_2.scrollLeft = div_2.scrollLeft + left
+    });
 })
 
 function scroll(bigBox, primary, copy, time) {
