@@ -34,7 +34,8 @@ module.exports = {
         app: './src/app.js',
         math: './src/js/math.js',
         screen: './src/screen.js',
-        screen_c: './src/screen_c.js'
+        screen_c: './src/screen_c.js',
+        screen_d: './src/screen_d.js'
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
@@ -163,6 +164,12 @@ module.exports = {
             title: '民声民意舆情分析预警平台',
             filename: "pages/screen_c.html",
             chunks: ['screen_c']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "../public/screen_d.html"),
+            title: '民声民意舆情分析预警平台',
+            filename: "pages/screen_d.html",
+            chunks: ['screen_d']
         }),
         // 提取css成单独文件
         new MiniCssExtractPlugin({

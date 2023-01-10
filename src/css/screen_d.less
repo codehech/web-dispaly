@@ -15,7 +15,7 @@
 @blue: #7FCCFF;
 @yellow-d: #E8940B;
 @green-l: #3A9512;
-@backgroundS: 100% 100%;
+@backgroundS: 100% 96%;
 
 body {
     padding: 0;
@@ -138,7 +138,7 @@ body {
                 >h5 {
                     color: #fff;
                     font-size: .6vw;
-                    padding-top: 6.5vh;
+                    padding-top: 8.2vh;
                     padding-left: 6vw;
                     font-weight: normal;
 
@@ -162,15 +162,15 @@ body {
                 >h4 {
                     color: #fff;
                     font-size: .7vw;
-                    padding-top: 3vh;
-                    padding-left: 7vw;
+                    padding-top: 2vh;
+                    padding-left: 6vw;
                 }
 
                 >h6 {
                     color: #8EACE2;
                     font-size: .6vw;
                     padding-top: 1vh;
-                    padding-left: 7vw;
+                    padding-left: 6vw;
                 }
             }
 
@@ -179,7 +179,7 @@ body {
                 height: auto;
                 margin: 0 auto;
                 padding-left: 8.2%;
-                padding-top: 3.5vh;
+                padding-top: 2vh;
                 display: flex;
                 box-sizing: border-box;
 
@@ -228,7 +228,7 @@ body {
                                 margin-top: 0;
                                 text-align: center;
                                 >img{
-                                    width: 60%;
+                                    width: 58%;
                                     margin: 0 auto;
                                 }
                                 >a {
@@ -364,7 +364,7 @@ body {
     box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2%;
+    padding: 1.2% 1.2% .8%;
     background: url('../images/g_t3x.png') no-repeat center top;
     background-size: 25%;
 
@@ -484,7 +484,39 @@ body {
                             width: 100%;
                             height: 10%;
                         }
+                        &._ss_r {
+                            width: 100%;
+                            height: 84%;
+                            overflow-y: scroll;
 
+                            &::-webkit-scrollbar {
+                                width: 0 !important
+                            }
+
+                            .r {
+                                width: 100%;
+                                height: 120vh;
+                            }
+                        }
+
+                        
+                    }
+                }
+
+                &._li_t {
+                    background: url('../images/n_r@3x.png') no-repeat;
+                    background-size: 100% 100%;
+                    height: 71.5%;
+                    width: 31%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 34.5%;
+
+                    >div {
+                        &._ss_t {
+                            width: 100%;
+                            height: 10%;
+                        }
                         &._ss_c {
                             width: 100%;
                             height: 90%;
@@ -503,38 +535,7 @@ body {
                                 }
                             }
                         }
-                    }
-                }
-
-                &._li_t {
-                    background: url('../images/n_r@3x.png') no-repeat;
-                    background-size: 100% 100%;
-                    height: 71.5%;
-                    width: 31%;
-                    position: absolute;
-                    bottom: 0;
-                    left: 34.5%;
-
-                    >div {
-                        &._ss_t {
-                            width: 100%;
-                            height: 10%;
-                        }
-
-                        &._ss_r {
-                            width: 100%;
-                            height: 84%;
-                            overflow-y: scroll;
-
-                            &::-webkit-scrollbar {
-                                width: 0 !important
-                            }
-
-                            .r {
-                                width: 100%;
-                                height: 120vh;
-                            }
-                        }
+                       
                     }
                 }
                 &.b_area {
@@ -681,7 +682,7 @@ body {
                         text-align: center;
                         margin-bottom: 5vh;
                         >img{
-                            width: 90%;
+                            width: 86%;
                             margin: 0 auto;
                         }
                     }
@@ -720,18 +721,27 @@ body {
                 width: 18%;
                 box-sizing: border-box;
                 height: 90%;
-                margin-top: 10vh;
+                margin-top: 2%;
                 float: left;
-
+                position: relative;
                 >div {
                     text-align: center;
                     width: 100%;
-                    height: 30%;
+                    height: 26.5%;
                     font-size: .6vw;
                     background: url('../images/g3x.png') no-repeat center bottom;
                     background-size: 80%;
                     position: relative;
-
+                    >a{
+                        background: url('../images/j3x.png') no-repeat;
+                        background-size: contain;
+                        height: 1vh;
+                        width: 1.2vw;
+                        right: 0;
+                        top:50%;
+                        display: inline-block;
+                        position: absolute;
+                    }
                     h2 {
                         color: #BBDDFF;
                         position: absolute;
@@ -754,13 +764,13 @@ body {
                 }
             }
             .center_content_c{
-                height: 87%;
+                height: 90%;
                 width: 82%;
                 float: left;
-                padding-top: 15vh;
+                padding-top: 8vh;
                 >div{
                     &.center_content {
-                        height: 30%;
+                        height: 23%;
                         width: 100%;
                         overflow-x:auto;
                         overflow-y: hidden;
@@ -771,6 +781,7 @@ body {
                         box-sizing: border-box;
                         padding: 0 1.5vw 0 0.5vw;
                         text-align: left;
+                        margin-bottom: 2vh;
                         &::-webkit-scrollbar {
                             width: 0 !important
                         }
@@ -779,7 +790,8 @@ body {
                             div {
                                 height: 18vh;
                                 width: 9vw;
-                                padding-top: 2vh;
+                                padding-top: 1.5vh;
+                                box-sizing: border-box;
                                 >dl {
                                     dt {
                                         width: 100%;
@@ -931,7 +943,11 @@ body {
 }
 .n_ti_time{
     font-size: .4vw;
+    font-weight: normal;
     color: #4CCAF1;
     padding-left: 5%;
     padding-bottom: 2%;
+    img{
+        width: 85%;
+    }
 }

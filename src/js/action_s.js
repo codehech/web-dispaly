@@ -52,7 +52,7 @@ let echartConfig = (...array) => {
     left: '5%',
     right: '5%',
     top: '0',
-    bottom: '1%',
+    bottom: '3%',
     containLabel: true
   }
   option = {
@@ -148,8 +148,8 @@ export default function eChartsFn(objArray) {
   let option3 = echartConfig(objArray[2].data, '#0A1C37', '#1CDE7D', {
     left: '8%',
     right: '8%',
-    top: '16%',
-    bottom: '5%',
+    top: '2%',
+    bottom: '2%',
     containLabel: true
   });
   option3 && lfChart.setOption(option3);
