@@ -1,4 +1,4 @@
-let radius = 150;
+let radius = 200;
 let dtr = Math.PI/180;
 let d=300;
 
@@ -270,7 +270,7 @@ function doPosition()
 		aA[i].style.top=mcList[i].cy+t-mcList[i].offsetHeight/2+'px';
 		
 		// aA[i].style.fontSize=Math.ceil(12*mcList[i].scale/2)+8+'px';
-		aA[i].style.fontSize=Math.ceil(32*mcList[i].scale/2)+8+'px';
+		aA[i].style.fontSize=0.6+'vw';
 		
 		aA[i].style.filter="alpha(opacity="+100*mcList[i].alpha+")";
 		aA[i].style.opacity=mcList[i].alpha;

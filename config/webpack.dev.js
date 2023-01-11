@@ -29,15 +29,15 @@ module.exports = {
     entry: {
         main: './src/main.js',
         action: './src/js/action.js',
-        app: './src/app.js',
-        screen: './src/screen.js',
-        screen_c: './src/screen_c.js',
+        /* app: './src/app.js',
+        screen: './src/screen.js',*/
+        screen_c: './src/screen_c.js', 
         screen_d: './src/screen_d.js'
     },
     output: {
         //path: path.resolve(__dirname, "../dist"),//开发环境不需要输出文件
         path: undefined,
-        filename: "static/js/[name].js",
+        filename: "static/js/[name].js?_v="+Math.random(),
         clean: true
     },
     module: {
@@ -139,7 +139,7 @@ module.exports = {
             filename: "pages/index.html",
             chunks: ['main']
         }),
-        new HtmlWebpackPlugin({
+/*         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/list.html"),
@@ -152,7 +152,7 @@ module.exports = {
             title: '民声民意舆情分析预警平台',
             filename: "pages/screen.html",
             chunks: ['screen']
-        }),
+        }), */
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/screen_c.html"),
             title: '民声民意舆情分析预警平台',

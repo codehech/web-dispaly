@@ -44,7 +44,7 @@ let echartConfig = (...array) => {
     left: '5%',
     right: '5%',
     top: '0',
-    bottom: '1%',
+    bottom: '10%',
     containLabel: true
   }
   option = {

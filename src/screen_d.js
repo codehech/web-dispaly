@@ -1,13 +1,13 @@
 import $ from 'jquery'
 import "./css/screen_d.less"
-// import tab_cloud from "./js/public/cloud"
+import tab_cloud from "./js/public/cloud"
 import eChartsFn from './js/action_s'
 import echartRight from './js/rightcharts_s'
 import eChartsDetail from './js/detail_32k'
 let pageValue = {}
 
-// const domain = /* document.domain || */ "//172.18.70.45:8080"
-const domain = /* document.domain || */ "//2.46.210.180:8443/service"
+const domain = /* document.domain || */ "//172.18.70.45:8080"
+// const domain = /* document.domain || */ "//2.46.210.180:8443/service"
 $(function () {
     function Percentage(num, total) {
         if (num == 0 || total == 0) {
@@ -83,11 +83,11 @@ $(function () {
                 warningJsonArray.push(warningJson)
             })
             let warningConut = new Array()
-            let sortId_w = (a, b) => {
+           /*  let sortId_w = (a, b) => {
                 return b.count - a.count ;
             }
-            let warningConut_d = warningJsonArray.sort(sortId_w)
-
+            let warningConut_d = warningJsonArray.sort(sortId_w) */
+            let warningConut_d = warningJsonArray
            
 
             //重新按类别封装分析研判json数据
@@ -110,7 +110,7 @@ $(function () {
                 let html = [
                     ` <div>
                         <h2>${v.count}</h2>
-                        <span>${v.key == 'v200000' ? '一事多人' : v.key == 'v300000' ? '一事长期未处理' : v.key== 'v400000'? '一事近期热诉': '一事多源'}</span>
+                        <span>${v.key == 'v200000' ? '一事多人' : v.key == 'v300000' ? '一事长期未处理' : v.key== 'v400000'? '一事近期热诉': '一事多渠道'}</span>
                         <a href="javascript:void(0)"></a>
                     </div>
                     `
@@ -226,9 +226,8 @@ $(function () {
                 });
                 soundsCount += v.value
             })
+           
             $.each(v.sounds, function (i, v) {
-                areaCharName.push(v.name)
-                areaCharValue.push(v.value)
                 let idName = citySourceObj[i].id == v.id ? citySourceObj[i].css : ''
                 let charHeight = 0;
                 soundsCount && !isNaN(soundsCount) ? charHeight = Percentage((v.value), soundsCount) : 0
@@ -251,6 +250,11 @@ $(function () {
             })
             $('#map').html(areaSource)
 
+            let sounds_d = v.sounds.sort(sortId)
+            $.each(sounds_d, function (i, v) {
+                areaCharName.push(v.name)
+                areaCharValue.push(v.value)
+            })
             //图表程序入口
             eChartsFn([
                 { obj: ss_chart, data: { name: companiesCharName, value: companiesCharValue } },
@@ -261,16 +265,17 @@ $(function () {
             //右侧图表专用数据
             let rightCharObjD = new Array()
             let rightCharName = new Array()
-            $.each(v.words, function (i, v) {
+            let sortId_c = (a, b) => {
+                return a.count - b.count;
+            }
+            let words_d = v.words.sort(sortId_c)
+            $.each(words_d, function (i, v) {
                 rightCharName.push(v.word)
                 rightCharObjD.push(v.count)
             })
             echartRight({ obj: hs_chart, data: { name: rightCharName, value: rightCharObjD } })
-
             //标签云
-          /*   let sortId_c = (a, b) => {
-                return a.count - b.count;
-            }
+           
             let wordCloud_d = v.wordCloud.sort(sortId_c)
             let cloudArray = new Array()
             $.each(wordCloud_d, function (i, v) {
@@ -281,7 +286,7 @@ $(function () {
             })
             $('#tagbox').html(cloudArray)
 
-            tab_cloud() */
+            tab_cloud() 
         }
     })
 

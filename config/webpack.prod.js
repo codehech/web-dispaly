@@ -31,10 +31,10 @@ module.exports = {
     entry: {
         main: './src/main.js',
         action: './src/js/action.js',
-        app: './src/app.js',
+        /*app: './src/app.js',
         math: './src/js/math.js',
-        screen: './src/screen.js',
-        screen_c: './src/screen_c.js',
+         screen: './src/screen.js',
+        screen_c: './src/screen_c.js', */
         screen_d: './src/screen_d.js'
     },
     output: {
@@ -145,7 +145,7 @@ module.exports = {
             filename: "pages/index.html",
             chunks:['main']
         }),
-        new HtmlWebpackPlugin({
+/*         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/list.html"),
@@ -164,7 +164,7 @@ module.exports = {
             title: '民声民意舆情分析预警平台',
             filename: "pages/screen_c.html",
             chunks: ['screen_c']
-        }),
+        }), */
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/screen_d.html"),
             title: '民声民意舆情分析预警平台',
