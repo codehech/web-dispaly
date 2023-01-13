@@ -4,6 +4,7 @@ import tab_cloud from "./js/public/cloud"
 import eChartsFn from './js/action_s'
 import echartRight from './js/rightcharts_s'
 import eChartsDetail from './js/detail_32k'
+import labelLineF from './js/public/labelLine'
 let pageValue = {}
 
 const domain = /* document.domain || */ "//172.18.70.45:8080"
@@ -428,6 +429,15 @@ $(function () {
                 let sentimentCount = v.sentimentCount
                 let dataObj = [{ name: dateArray, value: appealCount }, { name: dateArray, value: sentimentCount }] //第一个数据是上诉
                 eChartsDetail(document.getElementById('linchar_a'), dataObj)
+
+                let datas = [
+                    { name: '今日头条', value: 10 },
+                    { name: '便民服务中心', value: 30 },
+                    { name: '抖音', value: 5 },
+                    { name: '快手', value: 5 },
+                    { name: '微博', value: 20 }
+                ]
+                labelLineF([document.getElementById('will'),datas])
             }else{
                 $('#tiContent').html('')
             }
