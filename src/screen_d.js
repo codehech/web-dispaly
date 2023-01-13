@@ -110,7 +110,7 @@ $(function () {
                 let html = [
                     ` <div>
                         <h2>${v.count}</h2>
-                        <span>${v.key == 'v200000' ? '一事多人' : v.key == 'v300000' ? '一事长期未处理' : v.key== 'v400000'? '一事近期热诉': '一事多渠道'}</span>
+                        <span>${v.key == 'v200000' ? '一事多人投诉' : v.key == 'v300000' ? '一事长期未处理' : v.key== 'v400000'? '一事近期热诉': '一事多渠道投诉'}</span>
                         <a href="javascript:void(0)"></a>
                     </div>
                     `
@@ -440,18 +440,18 @@ $(function () {
         $('#box-alert').css('visibility', 'hidden')
     })
 
-    let c = () => {
+/*     let c = () => {
         let bigBox = document.querySelector('#_s_box')
         let primary = document.querySelector('#r_chart')
         let copy = document.querySelector('#copy')
         scroll(bigBox, primary, copy, 30)
     }
-    c()
+    c() */
 
     
 })
 
-function scroll(bigBox, primary, copy, time) {
+/* function scroll(bigBox, primary, copy, time) {
     if (bigBox.clientHeight >= primary.scrollHeight) {
         // 不需要滚动
         return;
@@ -490,7 +490,7 @@ function scroll(bigBox, primary, copy, time) {
             }
         }, time);
     };
-}
+} */
 
 if (module.hot) {
     module.hot.accept(['./js/math', './js/action_32k', './js/detail_32k', './js/rightcharts_32k'], function () {
