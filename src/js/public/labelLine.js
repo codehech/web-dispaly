@@ -24,16 +24,21 @@ let labelLineFConfig = (...arry) => {
           left: 'center'
         }, */
         tooltip: {
-            trigger: 'item'
+            trigger: 'item',
+            textStyle: {
+                "fontSize": fontSize(0.08)
+            },
         },
         series: [
             {
-                name: 'Access From',
+                name: '',
                 type: 'pie',
-                radius: [80, 120],
+                radius: ['55%', '85%'],
                 data: arry[0],
                 left: 'center',
+                bottom:'10%',
                 width: '70%',
+                height: '90%',
                 emphasis: {
                     itemStyle: {
                         shadowBlur: 10,
@@ -49,24 +54,25 @@ let labelLineFConfig = (...arry) => {
                 itemStyle: {
                     borderColor: '#fff',
                     borderWidth: 1
-                  },
+                },
                 label: {
                     alignTo: 'edge',
-                    formatter: '{name|{b}}\n{time|{c} ({d}%)}',
-                    minMargin: 5,
-                    edgeDistance: 10,
-                    lineHeight: 25,
+                    formatter: '{name|{b}}\n{time|{c}}',
+                    // formatter: '{name|{b}}\n{time|{c} ({d}%)}',
+                    //minMargin: 5,
+                    edgeDistance: '5%',
+                    lineHeight: fontSize(0.15),
                     fontFamily: '微软雅黑',
-                    fontSize: fontSize(0.08),
+                    fontSize: fontSize(0.1),
                     fontWeight: 300,
                     color: "#fff",
                     rich: {
-                      time: {
-                        fontSize: fontSize(0.08),
-                        color: '#8EACE2'
-                      }
+                        time: {
+                            fontSize: fontSize(0.08),
+                            color: '#8EACE2'
+                        }
                     }
-                  },
+                },
             }
         ]
     };

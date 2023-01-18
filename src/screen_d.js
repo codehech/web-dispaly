@@ -292,11 +292,12 @@ $(function () {
     })
 
 
-    let ms_list = () => {
+    let ms_list = (...arr) => {
+        let id = arr[0]
         $.ajax({
             url: domain + '/willLine',
             type: 'GET',
-            data: { _v: Math.random() },
+            data: {ageNum:1,ageSize:100,warningId:id},
             dataType: 'json',
             async: true,
             cache: false,
@@ -312,7 +313,7 @@ $(function () {
                         <em class="_s"></em>
                         <h6>${v.title}</h6>
                         <p>${v.content}</p>
-                        <p><span>时间： ${v.dateTime}</span><span>事件类型：${v.type}</span></p>
+                        <p><span>时间： ${v.datetime}</span><span>事件类型：${v.type}</span></p>
                     </div>
                 </a>
                 `].join('')
@@ -400,7 +401,7 @@ $(function () {
     let getDetailChar = (...arr) => {
         let id = arr[0]
         // w_sList()
-        ms_list()
+        ms_list(id)
         $.ajax({
             url: domain + '/warning/' + id,
             type: 'GET',
@@ -430,13 +431,18 @@ $(function () {
                 let dataObj = [{ name: dateArray, value: appealCount }, { name: dateArray, value: sentimentCount }] //第一个数据是上诉
                 eChartsDetail(document.getElementById('linchar_a'), dataObj)
 
-                let datas = [
+                let datas = new Array()
+                $.each(v.sourceCount,function(i,item){
+                    let j = {name:item.source,value:item.num}
+                    datas.push(j)
+                })
+                /* let datas = [
                     { name: '今日头条', value: 10 },
                     { name: '便民服务中心', value: 30 },
                     { name: '抖音', value: 5 },
                     { name: '快手', value: 5 },
                     { name: '微博', value: 20 }
-                ]
+                ] */
                 labelLineF([document.getElementById('will'),datas])
             }else{
                 $('#tiContent').html('')
