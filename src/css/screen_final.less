@@ -384,12 +384,11 @@ body {
       position: relative;
 
       > div {
-        height: 24%;
+        height: 26%;
 
         &._li_f {
           background: url('../images/sjtjly@3x.png') no-repeat;
           background-size: 100% 110%;
-          margin-bottom: 6.3%;
           overflow: hidden;
           position: relative;
           > h6 {
@@ -398,24 +397,37 @@ body {
             position: absolute;
             top: 28%;
             left: 1%;
+            &._r {
+              left: 35%;
+            }
           }
           ul {
             box-sizing: border-box;
             padding: 8vh 0 0 0.5vw;
             width: 100%;
-
+            height: 100%;
             &.t_j_list {
               li {
                 display: inline-block;
                 list-style: none;
-                width: 6vw;
-                height: 8vh;
+                width: 8vw;
+                height: 80%;
                 overflow: hidden;
-                margin-top: 2.5vh;
+                margin-top: 1vh;
                 overflow: hidden;
                 margin-left: 1vw;
+                padding-left: 0.2vw;
+                box-sizing: border-box;
                 &.zixun {
                   background: url('./imgs/media1.png') no-repeat left center;
+                  background-size: 25%;
+                }
+                &.listen {
+                  background: url('./imgs/listen@3x.png') no-repeat left center;
+                  background-size: 25%;
+                }
+                &.baiduai {
+                  background: url('./imgs/baiduai@3x.png') no-repeat left center;
                   background-size: 25%;
                 }
 
@@ -447,7 +459,7 @@ body {
                 &.rexian {
                   background: url('./imgs/15022.png') no-repeat left center;
                   background-size: 25%;
-                  width: 7vw;
+                  border-right: 1px solid #25374a;
                 }
 
                 &.l_app {
@@ -473,6 +485,7 @@ body {
                   text-indent: 2vw;
 
                   &.ti {
+                    margin-top: 10%;
                     font-size: 0.6vw;
                     color: #4ccaf1;
                     font-weight: bold;

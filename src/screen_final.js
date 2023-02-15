@@ -1,14 +1,14 @@
 import $ from 'jquery'
-import "./css/screen_d.less"
+import "./css/screen_final.less"
 import tab_cloud from "./js/public/cloud"
 import eChartsFn from './js/action_s'
 import echartRight from './js/rightcharts_s'
 import eChartsDetail from './js/detail_32k'
-import labelLineF from './js/public/labelLine'
+// import labelLineF from './js/public/labelLine'
 let pageValue = {}
 
-// const domain = /* document.domain || */ "//172.18.70.45:8080"
-const domain = /* document.domain || */ "//2.46.210.180:8443/service"
+const domain = /* document.domain || */ "//172.18.70.45:8080"
+// const domain = /* document.domain || */ "//2.46.210.180:8443/service"
 $(function () {
     function Percentage (num, total) {
         if (num == 0 || total == 0) {
@@ -27,31 +27,32 @@ $(function () {
         phone: 'rexian',
         app: 'l_app',
         hswz: 'hanshan',
-        xinfang: 'xinfang'
+        xinfang: 'xinfang',
+        wind: 'listen',
+        baidu: 'baiduai'
     }
 
-    const citySourceObj = [{
-        id: 1, name: '姑苏区', css: 'gs'
-    },
-    {
-        id: 2, name: '吴中区', css: 'wz'
-    }, {
-        id: 3, name: '太仓', css: 'tc'
-    }, {
-        id: 4, name: '常熟', css: 'cs'
-    }, {
-        id: 5, name: '张家港', css: 'zjg'
-    }, {
-        id: 6, name: '相城区', css: 'xc'
-    }, {
-        id: 7, name: '吴江区', css: 'wj'
-    }, {
-        id: 8, name: '高新区', css: 'gx'
-    }, {
-        id: 9, name: '工业园区', css: 'yq'
-    }, {
-        id: 10, name: '昆山市', css: 'ks'
-    }]
+    const citySourceObj = {
+        a_1: { name: '姑苏区', css: 'gs' }
+        ,
+        a_2: { name: '吴中区', css: 'wz' }
+        ,
+        a_3: { name: '太仓', css: 'tc' }
+        ,
+        a_4: { name: '常熟', css: 'cs' }
+        ,
+        a_5: { name: '张家港', css: 'zjg' }
+        ,
+        a_6: { name: '相城区', css: 'xc' }
+        ,
+        a_7: { name: '吴江区', css: 'wj' }
+        ,
+        a_8: { name: '高新区', css: 'gx' }
+        ,
+        a_9: { name: '工业园区', css: 'yq' }
+        ,
+        a_10: { name: '昆山市', css: 'ks' }
+    }
 
     let ss_chart = document.getElementById('ss_chart')
     let r_chart = document.getElementById('r_chart')
@@ -181,13 +182,13 @@ $(function () {
             $.each($('#ckr').find('a'), function (i, v) {
                 $(v).off().on('click', function () {
                     let width = $(div[i]).find('a').outerWidth(true)
-                    $(div[i]).animate({ 'scrollLeft': '-=' + width })
+                    $(div[i]).animate({ 'scrollLeft': '+=' + width })
                 })
             })
             $.each($('#center_title').find('a'), function (i, v) {
                 $(v).off().on('click', function () {
                     let width = $(div[i]).find('a').outerWidth(true)
-                    $(div[i]).animate({ 'scrollLeft': '+=' + width })
+                    $(div[i]).animate({ 'scrollLeft': '-=' + width })
                 })
             })
 
@@ -204,7 +205,7 @@ $(function () {
             $.each(v.dataSource, function (i, v) {
                 let html = [
                     '<li class="' + dataSourceObj[v.type] + '">',
-                    '<span class="ti">' + v.value + '</span>',
+                    '<span class="ti">' + v.value + (v.type != 'phone' ? ' +' : '') + '</span>',
                     '<span>' + v.name + '</span>',
                     '</li>',
                 ].join('')
@@ -215,14 +216,14 @@ $(function () {
             let sortId = (a, b) => {
                 return a.value - b.value
             }
-            let companies_d = v.companies.sort(sortId)
+            let companies_d = v.companies ? v.companies.sort(sortId) : {}
             $.each(companies_d, function (i, v) {
                 companiesCharName.push(v.name)
                 companiesCharValue.push(v.value)
             })
 
 
-            let government_d = v.government.sort(sortId)
+            let government_d = v.government ? v.government.sort(sortId) : {}
             $.each(government_d, function (i, v) {
                 let name = v.name
 
@@ -233,15 +234,16 @@ $(function () {
 
             let soundsCount = 0
             $.each(v.sounds, function (i, v) {
-                newAreaCharArray.push(v.value)
+                let numvalue = v.value * 1
+                newAreaCharArray.push(numvalue)
                 newAreaCharArray.sort(function (a, b) {
                     return b - a
                 })
-                soundsCount += v.value
+                soundsCount += numvalue
             })
 
             $.each(v.sounds, function (i, v) {
-                let idName = citySourceObj[i].id == v.id ? citySourceObj[i].css : ''
+                let idName = citySourceObj['a_' + v.id].css || ''
                 let charHeight = 0
                 soundsCount && !isNaN(soundsCount) ? charHeight = Percentage((v.value), soundsCount) : 0
                 charHeight = charHeight + '%'
@@ -263,7 +265,7 @@ $(function () {
             })
             $('#map').html(areaSource)
 
-            let sounds_d = v.sounds.sort(sortId)
+            let sounds_d = v.sounds ? v.sounds.sort(sortId) : {}
             $.each(sounds_d, function (i, v) {
                 areaCharName.push(v.name)
                 areaCharValue.push(v.value)
@@ -281,7 +283,7 @@ $(function () {
             let sortId_c = (a, b) => {
                 return a.count - b.count
             }
-            let words_d = v.words.sort(sortId_c)
+            let words_d = v.words ? v.words.sort(sortId_c) : {}
             $.each(words_d, function (i, v) {
                 rightCharName.push(v.word)
                 rightCharObjD.push(v.count)
@@ -289,7 +291,7 @@ $(function () {
             echartRight({ obj: hs_chart, data: { name: rightCharName, value: rightCharObjD } })
             //标签云
 
-            let wordCloud_d = v.wordCloud.sort(sortId_c)
+            let wordCloud_d = v.wordCloud ? v.wordCloud.sort(sortId_c) : {}
             let cloudArray = new Array()
             $.each(wordCloud_d, function (i, v) {
                 let html = [
@@ -443,19 +445,21 @@ $(function () {
                 let dataObj = [{ name: dateArray, value: appealCount }, { name: dateArray, value: sentimentCount }] //第一个数据是上诉
                 eChartsDetail(document.getElementById('linchar_a'), dataObj)
 
+                /* 原饼图功能
                 let datas = new Array()
                 $.each(v.sourceCount, function (i, item) {
                     let j = { name: item.source, value: item.num }
                     datas.push(j)
                 })
-                /* let datas = [
+                 let datas = [
                     { name: '今日头条', value: 10 },
                     { name: '便民服务中心', value: 30 },
                     { name: '抖音', value: 5 },
                     { name: '快手', value: 5 },
                     { name: '微博', value: 20 }
-                ] */
-                labelLineF([document.getElementById('will'), datas])
+                ] 
+                labelLineF([document.getElementById('will'), datas]) 
+                */
             } else {
                 $('#tiContent').html('')
             }

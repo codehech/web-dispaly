@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
     <style>
-        html,body{
+        html,
+        body {
             width: 100%;
             height: 100%;
             background-color: #0a1c37;
         }
-        li{
+
+        li {
             font-size: 26px;
             padding: 20px 0;
         }
-        .alertbac{
+
+        .alertbac {
             position: absolute;
             height: 100%;
             width: 100%;
@@ -24,9 +30,10 @@
         }
     </style>
     <script>
-        location.replace('./pages/screen_d.html?_v='+Math.random())
+        location.replace('./pages/screen_final.html?_v=' + Math.random())
     </script>
 </head>
+
 <body style="text-align: center;">
     <!-- <div class="alertbac" id="a_b_c" style="display: none;"></div> 
     <iframe src="./pages/screen_d.html" style="width:100vw; height: 95vh; top:5vh; position: relative;margin: 0 auto; left: 0; right: 0;z-index: 9999;" frameborder="0"></iframe>-->
@@ -35,4 +42,5 @@
         <li><a href="./pages/list.html">列表演示</a></li>
     </ul> -->
 </body>
+
 </html>

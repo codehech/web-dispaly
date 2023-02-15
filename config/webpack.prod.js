@@ -1,13 +1,13 @@
-const os = require("os");
+const os = require("os")
 const path = require("path")
-const ESLintWebpackPlugin = require("eslint-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");// js压缩多线程插件
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const ESLintWebpackPlugin = require("eslint-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")// js压缩多线程插件
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin")
 
-const threads = os.cpus().length;
+const threads = os.cpus().length
 
 const getStyleloader = (pre) => {
     return [
@@ -35,7 +35,8 @@ module.exports = {
         math: './src/js/math.js',
          screen: './src/screen.js',
         screen_c: './src/screen_c.js', */
-        screen_d: './src/screen_d.js'
+        screen_d: './src/screen_d.js',
+        screen_f: './src/screen_final.js'
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
@@ -128,48 +129,54 @@ module.exports = {
                 "../node_modules/.cache/.eslintcache"
             ),
             threads, // 开启多进程
-            fix:true
+            fix: true
         }),
         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/main.html"),
-            title:'民声民意舆情分析预警平台',
+            title: '民声民意舆情分析预警平台',
             filename: "index.html"
         }),
         new HtmlWebpackPlugin({
             // 以 public/index.html 为模板创建文件
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, "../public/index.html"),
-            title:'民声民意舆情分析预警平台',
-            filename: "pages/index.html",
-            chunks:['main']
-        }),
-/*         new HtmlWebpackPlugin({
-            // 以 public/index.html 为模板创建文件
-            // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
-            template: path.resolve(__dirname, "../public/list.html"),
-            title:'民声民意舆情分析预警平台',
-            filename: "pages/list.html",
-            chunks:['app']
-        }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "../public/screen.html"),
-            title:'民声民意舆情分析预警平台',
-            filename: "pages/screen.html",
-            chunks:['screen']
-        }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "../public/screen_c.html"),
             title: '民声民意舆情分析预警平台',
-            filename: "pages/screen_c.html",
-            chunks: ['screen_c']
-        }), */
+            filename: "pages/index.html",
+            chunks: ['main']
+        }),
+        /*         new HtmlWebpackPlugin({
+                    // 以 public/index.html 为模板创建文件
+                    // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
+                    template: path.resolve(__dirname, "../public/list.html"),
+                    title:'民声民意舆情分析预警平台',
+                    filename: "pages/list.html",
+                    chunks:['app']
+                }),
+                new HtmlWebpackPlugin({
+                    template: path.resolve(__dirname, "../public/screen.html"),
+                    title:'民声民意舆情分析预警平台',
+                    filename: "pages/screen.html",
+                    chunks:['screen']
+                }),
+                new HtmlWebpackPlugin({
+                    template: path.resolve(__dirname, "../public/screen_c.html"),
+                    title: '民声民意舆情分析预警平台',
+                    filename: "pages/screen_c.html",
+                    chunks: ['screen_c']
+                }), */
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/screen_d.html"),
             title: '民声民意舆情分析预警平台',
             filename: "pages/screen_d.html",
             chunks: ['screen_d']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "../public/screen_final.html"),
+            title: '民声民意舆情分析预警平台',
+            filename: "pages/screen_final.html",
+            chunks: ['screen_f']
         }),
         // 提取css成单独文件
         new MiniCssExtractPlugin({
