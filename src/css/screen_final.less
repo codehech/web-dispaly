@@ -190,7 +190,7 @@ body {
         > div {
           flex: 0 0 0 auto;
           width: 50%;
-          height: 68vh;
+          height: 65vh;
           overflow-y: scroll;
 
           &::-webkit-scrollbar {
@@ -199,6 +199,7 @@ body {
 
           &._al_left {
             //position: relative;
+            margin-top: 3vh;
             > h5 {
               color: #5ddefc;
               padding: 0 1vw;
@@ -224,7 +225,7 @@ body {
 
             > div {
               &.linchar_a {
-                height: 40vh;
+                height: 80%;
                 width: 100%;
               }
 
@@ -303,8 +304,14 @@ body {
 
             h5 {
               color: #5ddefc;
-              padding: 0 5vw;
               font-size: 0.6vw;
+              opacity: 0.5;
+              float: left;
+              width: 5vw;
+              text-align: center;
+              &.active {
+                opacity: 1;
+              }
             }
 
             > div {
@@ -742,13 +749,13 @@ body {
         width: 18%;
         box-sizing: border-box;
         height: 90%;
-        margin-top: 2%;
+        margin-top: 3%;
         float: left;
         position: relative;
         > div {
           text-align: center;
           width: 100%;
-          height: 26.5%;
+          height: 32%;
           font-size: 0.6vw;
           background: url('../images/g3x.png') no-repeat center bottom;
           background-size: 80%;
@@ -759,7 +766,7 @@ body {
             height: 1.2vh;
             width: 1.3vw;
             right: 0.5vw;
-            top: 50%;
+            top: 58%;
             display: inline-block;
             position: absolute;
             transform: rotate(180deg);
@@ -789,10 +796,10 @@ body {
         height: 90%;
         width: 79%;
         float: left;
-        padding-top: 8vh;
+        padding-top: 10.5vh;
         > div {
           &.center_content {
-            height: 23%;
+            height: 30%;
             width: 100%;
             overflow-x: auto;
             overflow-y: hidden;
@@ -804,6 +811,7 @@ body {
             padding: 0 1.5vw 0 0.5vw;
             text-align: left;
             margin-bottom: 2vh;
+            align-items: center;
             &::-webkit-scrollbar {
               width: 0 !important;
             }
@@ -861,7 +869,7 @@ body {
                       width: 100%;
                       float: left;
                       box-sizing: border-box;
-                      padding: 0.5vh 0 0 1vw;
+                      padding: 0.9vh 0 0 1vw;
 
                       li {
                         em {
@@ -930,15 +938,14 @@ body {
         float: left;
         width: 3%;
         height: 90%;
-        padding-top: 8vh;
+        margin-top: 3%;
         ul {
           width: 100%;
           height: 100%;
           li {
             width: 100%;
-            height: 17%;
+            height: 33%;
             display: flex;
-            margin-bottom: 7.9vh;
             justify-content: center;
             align-items: center;
             > a {

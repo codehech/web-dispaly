@@ -59,7 +59,7 @@ $(function () {
     let t_chart_f = document.getElementById('t-chart-f')
     let hs_chart = document.getElementById('hs_chart') || null
     $.ajax({
-        url: domain + '/largeScreen',
+        url: domain + '/screen',
         type: 'GET',
         data: {},
         dataType: 'json',
@@ -78,10 +78,10 @@ $(function () {
 
             //新增分析研判总数统计
             let warningJsonArray = []
-            $.each(v.warningConut, function (i, v) {
+            $.each(v.alertCount, function (i, v) {
                 let warningJson = {}
-                warningJson.key = i
-                warningJson.count = v
+                warningJson.key = v.name
+                warningJson.count = v.value
                 warningJsonArray.push(warningJson)
             })
             let warningConut = new Array()
@@ -98,8 +98,8 @@ $(function () {
                 let f_w_json = {}
                 f_w_json.type = t.key
                 let f_w_s_array = []
-                $.each(v.warning, function (i, d) {
-                    if (d.typeOrigin == t.key) {
+                $.each(v.alert, function (i, d) {
+                    if (d.alertTypeOrigin == t.key) {
                         f_w_s_array.push(d)
                     }
                 })
@@ -112,7 +112,7 @@ $(function () {
                 let html = [
                     ` <div>
                         <h2>${v.count}</h2>
-                        <span>${v.key == 'v200000' ? '一事多人投诉' : v.key == 'v300000' ? '一事长期未处理' : v.key == 'v400000' ? '一事近期热诉' : '一事多渠道投诉'}</span>
+                        <span>${v.key == '200000' ? '一事多人投诉' : v.key == '300000' ? '一事长期未处理' : v.key == '400000' ? '一事近期热诉' : '一事多渠道投诉'}</span>
                         <a href="javascript:void(0)"></a>
                     </div>
                     `
@@ -128,17 +128,15 @@ $(function () {
                 let contentArray = new Array()
                 $.each(v.content, function (i, d) {
                     let html = [
-                        `<a href="javascript:void(0)" data-title="${d.type}" data-id='${d.id}'>
-                                  <div class="${d.level == '高' ? 'hot' : d.level == '中' ? 'middle' : 'low'}">
+                        `<a href="javascript:void(0)" data-title="${d.alertType}" data-id='${d.id}'>
+                                  <div class="${d.alertLevel == '高' ? 'hot' : d.alertLevel == '中' ? 'middle' : 'low'}">
                                       <dl>
-                                          <dt><span>${d.type}</span><span class="s_r_fx">预警级别：${d.level}</span></dt>
+                                          <dt><span>${d.alertType}</span><span class="s_r_fx">预警级别：${d.alertLevel}</span></dt>
                                           <dd>
                                               <h4>${d.title.length > 25 ? d.title.substring(0, 26) + '...' : d.title}</h4>
                                               <ol>
-                                                  <li class="_s"><em></em>民声诉求：${d.appealCount}</li>
-                                                  <li class="_s"><em></em>网络舆情：${d.sentimentCount}</li>
-                                                  <li><em></em>涉事主体：${d.company}</li>
-                                                  <li><em></em>推送指令状态：${d.status}</li>
+                                                  <li><em></em>涉事主体：${d.subject}</li>
+                                                  <li><em></em>预警时间${d.alertTime}</li>
                                               </ol>
                                           </dd>
                                       </dl>
@@ -281,21 +279,21 @@ $(function () {
             let rightCharObjD = new Array()
             let rightCharName = new Array()
             let sortId_c = (a, b) => {
-                return a.count - b.count
+                return a.value - b.value
             }
             let words_d = v.words ? v.words.sort(sortId_c) : {}
             $.each(words_d, function (i, v) {
-                rightCharName.push(v.word)
-                rightCharObjD.push(v.count)
+                rightCharName.push(v.name)
+                rightCharObjD.push(v.value)
             })
             echartRight({ obj: hs_chart, data: { name: rightCharName, value: rightCharObjD } })
             //标签云
 
-            let wordCloud_d = v.wordCloud ? v.wordCloud.sort(sortId_c) : {}
+            let wordCloud_d = v.wordcloud ? v.wordcloud.sort(sortId_c) : {}
             let cloudArray = new Array()
             $.each(wordCloud_d, function (i, v) {
                 let html = [
-                    `<a href="#">${v.word}</a> `
+                    `<a href="#">${v.name}</a> `
                 ].join('')
                 cloudArray.push(html)
             })
@@ -307,20 +305,10 @@ $(function () {
 
 
     let ms_list = (...arr) => {
-        let id = arr[0]
-        $.ajax({
-            url: domain + '/willLine',
-            type: 'GET',
-            data: { ageNum: 1, ageSize: 100, warningId: id },
-            dataType: 'json',
-            async: true,
-            cache: false,
-            success: function (d) {
-                if (d.code == 200) {
-                    let v = d.rows || null
-                    let willLineArray = new Array()
-                    $.each(v, function (i, v) {
-                        let html = [`
+        let v = arr[0] || null
+        let willLineArray = new Array()
+        $.each(v, function (i, v) {
+            let html = [`
                 <a href="javascript:void(0)">
                     <div class="_al_r_co_l">${v.source}</div>
                     <div class="_al_r_co_r">
@@ -331,12 +319,9 @@ $(function () {
                     </div>
                 </a>
                 `].join('')
-                        willLineArray.push(html)
-                    })
-                    $('#news').html(willLineArray)
-                }
-            }
+            willLineArray.push(html)
         })
+        $('#news').html(willLineArray)
     }
 
     /*
@@ -415,9 +400,8 @@ $(function () {
     let getDetailChar = (...arr) => {
         let id = arr[0]
         // w_sList()
-        ms_list(id)
         $.ajax({
-            url: domain + '/warning/' + id,
+            url: domain + '/screen/alert/' + id,
             type: 'GET',
             data: { _v: Math.random() },
             dataType: 'json',
@@ -429,13 +413,15 @@ $(function () {
         }).then((d) => {
             if (d.code == 200 && d.data) {
                 let v = d.data || null
+                ms_list(v.orderList)
+                let info = v.alert || null
                 let html_ti = `
-            <h5>${v.type} <span>预警级别：${v.level}</span>
-                <p>指令推送状态：${v.status}</p>
-                <p class="_ll">最新预警时间：${v.dateTime}</p>
+            <h5>${info.alertType} <span>预警级别：${info.alertLevel}</span>
+                
+                <p class="_ll">最新预警时间：${info.alertTime}</p>
             </h5>
-            <h4>${v.title}</h4>
-            <h6>涉事主体：${v.company}</h6>`
+            <h4>${info.title}</h4>
+            <h6>涉事主体：${info.subject}</h6>`
                 $('#tiContent').html(html_ti)
                 v.level == '高' ? $('#tiContent').parent().removeClass().addClass('al_hot') : v.level == '中' ? $('#tiContent').parent().removeClass().addClass('al_middle') : $('#tiContent').parent().removeClass().addClass('al_normal')
 
