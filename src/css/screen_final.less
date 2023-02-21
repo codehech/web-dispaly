@@ -191,12 +191,8 @@ body {
           flex: 0 0 0 auto;
           width: 50%;
           height: 65vh;
-          overflow-y: scroll;
-
-          &::-webkit-scrollbar {
-            width: 0 !important;
-          }
-
+          overflow-y: hidden;
+          box-sizing: border-box;
           &._al_left {
             //position: relative;
             margin-top: 3vh;
@@ -308,54 +304,76 @@ body {
               opacity: 0.5;
               float: left;
               width: 5vw;
+              height: 4vh;
               text-align: center;
+              cursor: pointer;
+              position: relative;
+              > div {
+                position: absolute;
+                left: 10%;
+                top: 20%;
+                width: 0;
+                height: 0;
+                line-height: 0;
+                font-size: 0;
+                border-top: 0.2vw solid transparent;
+                border-left: 0.4vw solid #5ddefc;
+                border-bottom: 0.2vw solid transparent;
+              }
               &.active {
                 opacity: 1;
               }
             }
-
             > div {
+              overflow-y: scroll;
+              height: 65vh;
               width: 100%;
-              margin-top: 4vh;
-
-              > a {
+              padding-top: 2vh;
+              box-sizing: border-box;
+              &::-webkit-scrollbar {
+                width: 0 !important;
+              }
+              > div {
                 width: 100%;
-                display: block;
-                display: flex;
+                > a {
+                  width: 100%;
+                  display: block;
+                  display: flex;
 
-                > div {
-                  flex: 0 0 0 auto;
+                  > div {
+                    flex: 0 0 0 auto;
 
-                  &._al_r_co_l {
-                    width: 20%;
-                    color: #8eace2;
-                    font-size: 0.6vw;
-                    text-align: right;
-                    padding-right: 2%;
-                    line-height: 2vh;
-                    margin-top: -1.2vh;
-                  }
-
-                  &._al_r_co_r {
-                    width: 90%;
-                    padding-left: 2%;
-                    border-left: 1px solid #0079d2;
-                    padding-bottom: 4vh;
-
-                    h6 {
-                      color: #fff;
-                      margin-top: -1vh;
+                    &._al_r_co_l {
+                      width: 20%;
+                      color: #8eace2;
                       font-size: 0.6vw;
-                      font-weight: normal;
+                      text-align: right;
+                      padding-right: 2%;
+                      line-height: 2vh;
+                      margin-top: -1.2vh;
                     }
 
-                    p {
-                      padding: 0.5vh 0;
-                      color: #8eace2;
-                      font-size: 0.5vw;
+                    &._al_r_co_r {
+                      width: 90%;
+                      padding-left: 2%;
+                      border-left: 1px solid #0079d2;
+                      padding-bottom: 4vh;
 
-                      span {
-                        padding-right: 4vw;
+                      h6 {
+                        color: #fff;
+                        margin-top: -1vh;
+                        font-size: 0.6vw;
+                        font-weight: normal;
+                      }
+
+                      p {
+                        padding: 0.5vh 0;
+                        color: #8eace2;
+                        font-size: 0.5vw;
+
+                        span {
+                          padding-right: 4vw;
+                        }
                       }
                     }
                   }
@@ -937,15 +955,16 @@ body {
       .center_conetnt_r {
         float: left;
         width: 3%;
-        height: 90%;
-        margin-top: 3%;
+        height: 100%;
         ul {
           width: 100%;
           height: 100%;
+          padding-top: 2.8vh;
           li {
             width: 100%;
-            height: 33%;
+            height: 18.5%;
             display: flex;
+            margin-top: 10vh;
             justify-content: center;
             align-items: center;
             > a {

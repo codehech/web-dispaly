@@ -129,9 +129,9 @@ $(function () {
                 $.each(v.content, function (i, d) {
                     let html = [
                         `<a href="javascript:void(0)" data-title="${d.alertType}" data-id='${d.id}'>
-                                  <div class="${d.alertLevel == '高' ? 'hot' : d.alertLevel == '中' ? 'middle' : 'low'}">
+                                  <div class="${d.alertLevel == '1' ? 'hot' : d.alertLevel == '2' ? 'middle' : 'low'}">
                                       <dl>
-                                          <dt><span>${d.alertType}</span><span class="s_r_fx">预警级别：${d.alertLevel}</span></dt>
+                                          <dt><span>${d.alertType}</span><span class="s_r_fx">预警级别：${d.alertLevel == '1' ? '高' : d.alertLevel == '2' ? '中' : '低'}</span></dt>
                                           <dd>
                                               <h4>${d.title.length > 25 ? d.title.substring(0, 26) + '...' : d.title}</h4>
                                               <ol>
@@ -310,12 +310,12 @@ $(function () {
         $.each(v, function (i, v) {
             let html = [`
                 <a href="javascript:void(0)">
-                    <div class="_al_r_co_l">${v.source}</div>
+                    <div class="_al_r_co_l">${v.customizedSubject}</div>
                     <div class="_al_r_co_r">
                         <em class="_s"></em>
                         <h6>${v.title}</h6>
                         <p>${v.content}</p>
-                        <p><span>时间： ${v.datetime}</span><span>事件类型：${v.type}</span></p>
+                        <p><span>时间： ${v.publishTime}</span><span>事件类型：${v.eventType}</span></p>
                     </div>
                 </a>
                 `].join('')
@@ -323,6 +323,29 @@ $(function () {
         })
         $('#news').html(willLineArray)
     }
+
+
+    let ms_list_net = (...arr) => {
+        let v = arr[0] || null
+        let willLineArray = new Array()
+        $.each(v, function (i, v) {
+            let html = [`
+                <a href="javascript:void(0)">
+                    <div class="_al_r_co_l">网络舆情${v.customizedSubject}</div>
+                    <div class="_al_r_co_r">
+                        <em class="_s"></em>
+                        <h6>网络舆情${v.title}</h6>
+                        <p>${v.content}</p>
+                        <p><span>时间： ${v.publishTime}</span><span>网络舆情事件类型：${v.eventType}</span></p>
+                    </div>
+                </a>
+                `].join('')
+            willLineArray.push(html)
+        })
+        $('#news').html(willLineArray)
+    }
+
+
 
     /*
     $('#m_chose').find('a').off().on('click', function () {
@@ -397,6 +420,8 @@ $(function () {
         })
     } */
 
+    let list_ms = []
+    let list_net = []
     let getDetailChar = (...arr) => {
         let id = arr[0]
         // w_sList()
@@ -414,16 +439,19 @@ $(function () {
             if (d.code == 200 && d.data) {
                 let v = d.data || null
                 ms_list(v.orderList)
+                list_ms = v.orderList
+                list_net = v.orderList
+
                 let info = v.alert || null
                 let html_ti = `
-            <h5>${info.alertType} <span>预警级别：${info.alertLevel}</span>
+            <h5>${info.alertType} <span>预警级别：${info.alertLevel == '1' ? '高' : info.alertLevel == '2' ? '中' : '低'}</span>
                 
                 <p class="_ll">最新预警时间：${info.alertTime}</p>
             </h5>
             <h4>${info.title}</h4>
             <h6>涉事主体：${info.subject}</h6>`
                 $('#tiContent').html(html_ti)
-                v.level == '高' ? $('#tiContent').parent().removeClass().addClass('al_hot') : v.level == '中' ? $('#tiContent').parent().removeClass().addClass('al_middle') : $('#tiContent').parent().removeClass().addClass('al_normal')
+                info.alertLevel == '1' ? $('#tiContent').parent().removeClass().addClass('al_hot') : info.alertLevel == '2' ? $('#tiContent').parent().removeClass().addClass('al_middle') : $('#tiContent').parent().removeClass().addClass('al_normal')
 
                 let dateArray = v.appealDate
                 let appealCount = v.appealCount
@@ -452,6 +480,15 @@ $(function () {
         })
     }
 
+    $('._al_right').find('h5').off().on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active')
+        $('#scollist').animate({ scrollTop: 0 }, 500)
+        if ($(this).data('type') == 'o') {
+            ms_list(list_ms)
+        } else {
+            ms_list_net(list_net)
+        }
+    })
 
     $('#close').off().on('click', function () {
         //$(window.parent.document).find("#a_b_c").hide()

@@ -94,7 +94,7 @@ let eLineConfig_a = (...arr) => {
       orient: 'horizontal',
       icon: 'rect',
       data: [{
-        name: '投诉声量',
+        name: '民生诉求',
         textStyle: { fontWeight: 'normal', color: '#22FFE2' }
       }, {
         name: '舆情声量',
@@ -142,7 +142,7 @@ let eLineConfig_a = (...arr) => {
         }
       },
       {
-        name: '投诉声量',
+        name: '民生诉求',
         data: arr[0].value,
         type: 'line',
         lineStyle: {
