@@ -85,6 +85,7 @@ $(function () {
                 warningJsonArray.push(warningJson)
             })
             let warningConut = new Array()
+            let warningConut_rli = new Array()
             /*  let sortId_w = (a, b) => {
                  return b.count - a.count ;
              }
@@ -117,10 +118,12 @@ $(function () {
                     </div>
                     `
                 ].join('')
-
+                let rhtml = [`<li><a href="javascript:void(0)"></a></li>`].join('')
                 warningConut.push(html)
+                warningConut_rli.push(rhtml)
             })
             $('#center_title').html(warningConut)
+            $('#ckr').html(warningConut_rli)
 
             let warningSource = new Array()
             $.each(f_warningConut_d, function (i, v) {
@@ -307,20 +310,34 @@ $(function () {
     let ms_list = (...arr) => {
         let v = arr[0] || null
         let willLineArray = new Array()
-        $.each(v, function (i, v) {
-            let html = [`
-                <a href="javascript:void(0)">
-                    <div class="_al_r_co_l">${v.customizedSubject}</div>
-                    <div class="_al_r_co_r">
-                        <em class="_s"></em>
-                        <h6>${v.title}</h6>
-                        <p>${v.content}</p>
-                        <p><span>时间： ${v.publishTime}</span><span>事件类型：${v.eventType}</span></p>
-                    </div>
-                </a>
-                `].join('')
-            willLineArray.push(html)
-        })
+        if (v && v.length > 0) {
+            $.each(v, function (i, v) {
+                let html = [`
+                    <a href="javascript:void(0)">
+                        <div class="_al_r_co_l">${v.customizedSubject}</div>
+                        <div class="_al_r_co_r">
+                            <em class="_s"></em>
+                            <h6>${v.title}</h6>
+                            <p>${v.content}</p>
+                            <p><span>时间： ${v.publishTime}</span><span>事件类型：${v.eventType}</span></p>
+                        </div>
+                    </a>
+                    `].join('')
+                willLineArray.push(html)
+            })
+        } else {
+            willLineArray = ` <div class="n_title-t">
+            很抱歉，没有找到与 <span id="n_title_a">“民生诉求”</span> 相关的信息
+            </div>
+            <div>
+                <p>温馨提示：</p>
+                <ul>
+                    <li>
+                        · 尚未出现相关信息，无数据收录；</li>
+                    <li>· 请稍后重新刷新页面。</li>
+                </ul>
+            </div>`
+        }
         $('#news').html(willLineArray)
     }
 
@@ -328,8 +345,9 @@ $(function () {
     let ms_list_net = (...arr) => {
         let v = arr[0] || null
         let willLineArray = new Array()
-        $.each(v, function (i, v) {
-            let html = [`
+        if (v && v.length > 0) {
+            $.each(v, function (i, v) {
+                let html = [`
                 <a href="javascript:void(0)">
                     <div class="_al_r_co_l">网络舆情${v.customizedSubject}</div>
                     <div class="_al_r_co_r">
@@ -340,8 +358,21 @@ $(function () {
                     </div>
                 </a>
                 `].join('')
-            willLineArray.push(html)
-        })
+                willLineArray.push(html)
+            })
+        } else {
+            willLineArray = ` <div class="n_title-t">
+            很抱歉，没有找到与 <span id="n_title_a">“网络舆情”</span> 相关的信息
+            </div>
+            <div>
+                <p>温馨提示：</p>
+                <ul>
+                    <li>
+                        · 尚未出现相关信息，无数据收录；</li>
+                    <li>· 请稍后重新刷新页面。</li>
+                </ul>
+            </div>`
+        }
         $('#news').html(willLineArray)
     }
 
@@ -440,7 +471,7 @@ $(function () {
                 let v = d.data || null
                 ms_list(v.orderList)
                 list_ms = v.orderList
-                list_net = v.orderList
+                list_net = v.sentimentList
 
                 let info = v.alert || null
                 let html_ti = `
