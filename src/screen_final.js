@@ -349,12 +349,12 @@ $(function () {
             $.each(v, function (i, v) {
                 let html = [`
                 <a href="javascript:void(0)">
-                    <div class="_al_r_co_l">网络舆情${v.customizedSubject}</div>
+                    <div class="_al_r_co_l"></div>
                     <div class="_al_r_co_r">
                         <em class="_s"></em>
                         <h6>网络舆情${v.title}</h6>
                         <p>${v.content}</p>
-                        <p><span>时间： ${v.publishTime}</span><span>网络舆情事件类型：${v.eventType}</span></p>
+                        <p><span>时间： ${v.publishTime}</span></p>
                     </div>
                 </a>
                 `].join('')
